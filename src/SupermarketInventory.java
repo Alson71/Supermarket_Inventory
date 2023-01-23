@@ -12,9 +12,12 @@ public class SupermarketInventory{
     static ArrayList<Object> item,id;
     static ArrayList<Integer> quantity;
     public void createFile(){
+        try{
         URL url = getClass().getResource("supermarket.txt");
         assert url != null;
         file = new File(url.getPath());
+        }catch(NullPointerException e){
+            file= new File("src/supermarket.txt");
     }
     public static void main(String[] args) throws IOException {
         SupermarketInventory inventory= new SupermarketInventory();

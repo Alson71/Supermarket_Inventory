@@ -275,6 +275,9 @@ public class SupermarketInventory{
                             }
 
                         }
+                        else {
+                            k1 = k1.replaceAll("\\s+", " ");
+                        }
                         do {
                             k2 = JOptionPane.showInputDialog(null,"Enter the ID of the item","Add Item",JOptionPane.INFORMATION_MESSAGE);
                             if(k2==null) break;
@@ -295,6 +298,9 @@ public class SupermarketInventory{
                             } else if (cancel == 1) {
                                 continue;
                             }
+                        }
+                        else {
+                            k2 = k2.replaceAll("\\s+", " ");
                         }
                         do {
                             b=true;
@@ -403,6 +409,9 @@ public class SupermarketInventory{
                                 continue;
                             }
                         }
+                        else {
+                            k2 = k2.replaceAll("\\s+", " ");
+                        }
                         do {
                             k3 = JOptionPane.showInputDialog("Enter the ID of the replaced item");
                             if(k3==null){
@@ -422,6 +431,9 @@ public class SupermarketInventory{
                             } else if (cancel == 1) {
                                 continue;
                             }
+                        }
+                        else {
+                            k3 = k3.replaceAll("\\s+", " ");
                         }
                         do {
                             b=true;
@@ -520,6 +532,9 @@ public class SupermarketInventory{
                                     break;
                                 }
                             }
+                            else {
+                                k1 = k1.replaceAll("\\s+", " ");
+                            }
                         }while(k1==null);
                         if(cancel==0){
                             continue;
@@ -553,6 +568,9 @@ public class SupermarketInventory{
                                 if (cancel == 0) {
                                     break;
                                 }
+                            }
+                            else {
+                                k1 = k1.replaceAll("\\s+", " ");
                             }
                         }while(k1==null);
                         if(cancel==0){

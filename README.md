@@ -1,6 +1,7 @@
 # Supermarket-Inventory-Project
 This project is meant to emulate a super market inventory, which includes allowing the user to save their current list of items, view their list of items, and use different actions to modify their items.
 Sources for the pictures used: 
+
 ["Supermarket Grocery Store" by artisticco at Adobe Stock Photos](https://stock.adobe.com/search?k=cartoon+supermarket&asset_id=127541046)
 
 ["Free vector supermarket with food shelves illustration" by katemangostar at Freepik](https://www.freepik.com/free-vector/supermarket-with-food-shelves-illustration_3297820.htm#query=supermarket%20cartoon&position=0&from_view=keyword)

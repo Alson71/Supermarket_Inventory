@@ -1,5 +1,5 @@
 # Supermarket-Inventory-Project
-This project is meant to emulate a super market inventory, which includes allowing the user to save their current list of items, view their list of items, and use different actions to modify their items.
+This project is meant to emulate a super market inventory, which includes allowing the user to save their current list of items, view their list of items, and use different actions to modify their items. Also, the password to log in is "password", but that can be changed in the source code.
 
 Sources for the pictures used: 
 

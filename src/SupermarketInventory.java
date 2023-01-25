@@ -177,6 +177,43 @@ public class SupermarketInventory{
                     }
                     else if(makeupMind==10){
                         JOptionPane.showMessageDialog(null,"Fine, we'll do it for you. Initiating system shutdown!");
+                        PrintWriter writer=new PrintWriter(file);
+                    writer.println("Supermarket Inventory: ");
+                    writer.println();
+                    Object [][] array= new Object[3][2];
+                    array[0]= new Object[i.length];
+                    array[0][0]= "Item Name:";
+                    System.arraycopy(i, 0, array[0], 1, array[0].length - 1);
+                    array[1]= new Object[l.length+1];
+                    array[1][0]= "Item ID:";
+                    System.arraycopy(l, 0, array[1], 1, array[1].length - 1);
+                    array[2]= new Object[km.length+1];
+                    array[2][0]= "Item Quantity:";
+                    System.arraycopy(km, 0, array[2], 1, array[2].length - 1);
+                    for(int j=0; j<3;j++){
+                        for(int k=0; k<array[j].length; k++){
+                            writer.print(array[j][k]+" ");
+                        }
+                        writer.println();
+                    }
+                    writer.println();
+                    writer.println();
+                    writer.println();
+                    writer.println();
+                    writer.println("Saved Data:");
+                    writer.println();
+                    for (Object o : i) {
+                        writer.print(o + "#");
+                    }
+                    writer.println();
+                    for (Object o : l) {
+                        writer.print(o + "#");
+                    }
+                    writer.println();
+                    for (Object o : km) {
+                        writer.print(o + "#");
+                    }
+                    writer.close();
                         System.exit(0);
                     }
                     continue;

@@ -20,6 +20,7 @@ public class SupermarketInventory{
             JOptionPane.showMessageDialog(null,"File not detected! Creating file...","Error!",JOptionPane.INFORMATION_MESSAGE);
             file= new File("src/supermarket.txt");
     }
+    }
     public static void main(String[] args) throws IOException {
         SupermarketInventory inventory= new SupermarketInventory();
         inventory.createFile();

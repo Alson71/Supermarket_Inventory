@@ -559,7 +559,12 @@ public class SupermarketInventory{
                             do {
                                 k1 = JOptionPane.showInputDialog(null, "What is the new name of your item?", "Name Change", JOptionPane.INFORMATION_MESSAGE);
                                 if (item.contains(k1)) {
-                                    JOptionPane.showMessageDialog(null,"Two items can't have the same name.","Error!",JOptionPane.INFORMATION_MESSAGE,null);
+                                    if(k1.equals("Actions")){
+                                        JOptionPane.showMessageDialog(null,"Can't rename item to \"Actions\"","Error!",JOptionPane.INFORMATION_MESSAGE,null);
+                                    }
+                                    else {
+                                        JOptionPane.showMessageDialog(null, "Two items can't have the same name.", "Error!", JOptionPane.INFORMATION_MESSAGE, null);
+                                    }
                                 }
                                 else if(k1==null){
                                     break;

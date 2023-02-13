@@ -383,6 +383,10 @@ public class SupermarketInventory{
 
                 }
                 else if(bro==1){
+                    if(i.length == 1){
+                        JOptionPane.showMessageDialog(null,"You must have items on your list first.","Empty List",JOptionPane.INFORMATION_MESSAGE);
+                        continue;
+                    }
                     int cancel=-1,k1,confirm=2;
                     Object [] huh= new Object[i.length-1];
                     System.arraycopy(i, 0, huh, 0, i.length - 1);
@@ -413,6 +417,10 @@ public class SupermarketInventory{
 
                 }
                 else if(bro==2){
+                    if(i.length == 1){
+                        JOptionPane.showMessageDialog(null,"You must have items on your list first.","Empty List",JOptionPane.INFORMATION_MESSAGE);
+                        continue;
+                    }
                     int cancel=-1,f=-1;
                     Object [] huh= new Object[i.length-1];
                     System.arraycopy(i, 0, huh, 0, i.length - 1);

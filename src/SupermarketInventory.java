@@ -5,80 +5,221 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.io.*;
 import org.apache.commons.io.input.*;
+
 public class SupermarketInventory{
+
     static File file;
     static String intro;
     static int items, YesNo, lockedOut,makeupMind;
     static ArrayList<Object> item,id;
     static ArrayList<Integer> quantity;
-    public void createFile(){
-        try {
-            URL url = getClass().getResource("supermarket.txt");
-            assert url != null;
-            file = new File(url.getPath());
-        }catch(NullPointerException e){
-            JOptionPane.showMessageDialog(null,"File not detected! Creating file...","Error!",JOptionPane.INFORMATION_MESSAGE);
-            file = new File("src/supermarket.txt");
-        }
-    }
+    static URL url1,url2,url3,url4,url5;
+    static ImageIcon icon,icon1,icon2,icon3,icon4;
+    static Object [] i,l,km;
+
+
     public static void main(String[] args) throws IOException {
+        UIManager.put("OptionPane.messageFont", new Font("Arial", Font.BOLD,17));
         SupermarketInventory inventory= new SupermarketInventory();
         inventory.createFile();
-        URL url1 = new URL("https://t3.ftcdn.net/jpg/01/27/54/10/360_F_127541046_yLlMu84gM9kKBjzNKp6ZSwAjuydyJA48.jpg");
-        URL url2= new URL("https://zktecopos.com/assets/img/software/supermarket-with-food-shelves-illustration_1262-16618.jpg");
-        URL url3= new URL("https://t4.ftcdn.net/jpg/01/00/83/01/360_F_100830164_GkCBwckrE0g9FJrOdt4t8LFYgNN32z88.jpg");
-        URL url4= new URL("https://img.freepik.com/premium-vector/opposite-old-new-vector-illustration_74440-558.jpg");
-        URL url5= new URL("https://i0.wp.com/www.complexsql.com/wp-content/uploads/2018/01/Alter-table.png?fit=400%2C400&ssl=1");
-        ImageIcon icon= new ImageIcon(url1);
-        ImageIcon icon1= new ImageIcon(url2);
-        ImageIcon icon2= new ImageIcon(url3);
-        ImageIcon icon3= new ImageIcon(url4);
-        ImageIcon icon4= new ImageIcon(url5);
+        createMusicNPictures();
+        login();
+        loadData();
+        supermarketInventory();
+    }
+
+
+
+    public static void saveToFile() throws IOException{
+        YesNo = JOptionPane.showConfirmDialog(null, "Are you sure you want to end the program?", "End Program", JOptionPane.YES_NO_OPTION);
+        if (YesNo == 0) {
+            PrintWriter writer=new PrintWriter(file);
+            writer.println("Supermarket Inventory: ");
+            writer.println();
+            Object [][] array= new Object[3][2];
+            array[0]= new Object[i.length+1];
+            array[0][0]= "Item Name:";
+            for(int j=1; j<array[0].length; j++){
+                array[0][j]= i[j-1];
+                if(j==i.length-1){
+                    break;
+                }
+            }
+            for(int j=0; j<array[0].length-1;j++){
+                writer.print(array[0][j]+" ");
+            }
+            writer.println();
+            array[1]= new Object[l.length+1];
+            array[1][0]= "Item ID:";
+            System.arraycopy(l, 0, array[1], 1, array[1].length - 1);
+            for(int j=0; j<array[1].length;j++){
+                writer.print(array[1][j]+" ");
+            }
+            writer.println();
+            array[2]= new Object[km.length+1];
+            array[2][0]= "Item Quantity:";
+            System.arraycopy(km, 0, array[2], 1, array[2].length - 1);
+            for(int j=0; j<array[2].length;j++){
+                writer.print(array[2][j]+" ");
+            }
+            writer.println();
+            writer.println();
+            writer.println();
+            writer.println();
+            writer.println();
+            writer.println("Saved Data:");
+            writer.println();
+            for (Object o : i) {
+                writer.print(o + "#");
+            }
+            writer.println();
+            for (Object o : l) {
+                writer.print(o + "#");
+            }
+            writer.println();
+            for (Object o : km) {
+                writer.print(o + "#");
+            }
+            writer.close();
+            System.exit(0);
+        }
+
+    }
+
+
+
+
+    public static void specialSaveToFile() throws IOException{
+        YesNo = JOptionPane.showConfirmDialog(null, "Are you sure you want to end the program?", "End Program", JOptionPane.YES_NO_OPTION);
+        if (YesNo == 0){
+            PrintWriter writer=new PrintWriter(file);
+            writer.println("Supermarket Inventory: ");
+            writer.println();
+            Object [][] array= new Object[3][2];
+            array[0]= new Object[i.length];
+            array[0][0]= "Item Name:";
+            System.arraycopy(i, 0, array[0], 1, array[0].length - 1);
+            array[1]= new Object[l.length+1];
+            array[1][0]= "Item ID:";
+            System.arraycopy(l, 0, array[1], 1, array[1].length - 1);
+            array[2]= new Object[km.length+1];
+            array[2][0]= "Item Quantity:";
+            System.arraycopy(km, 0, array[2], 1, array[2].length - 1);
+            for(int j=0; j<3;j++){
+                for(int k=0; k<array[j].length; k++){
+                    writer.print(array[j][k]+" ");
+                }
+                writer.println();
+            }
+            writer.println();
+            writer.println();
+            writer.println();
+            writer.println();
+            writer.println("Saved Data:");
+            writer.println();
+            for (Object o : i) {
+                writer.print(o + "#");
+            }
+            writer.println();
+            for (Object o : l) {
+                writer.print(o + "#");
+            }
+            writer.println();
+            for (Object o : km) {
+                writer.print(o + "#");
+            }
+            writer.close();
+            System.exit(0);
+        }
+        else if(YesNo==1){
+            makeupMind++;
+            if(makeupMind==5){
+                JOptionPane.showMessageDialog(null, "Make up your mind!");
+            }
+            else if(makeupMind==10){
+                JOptionPane.showMessageDialog(null,"Fine, we'll do it for you. Initiating system shutdown!");
+                PrintWriter writer=new PrintWriter(file);
+                writer.println("Supermarket Inventory: ");
+                writer.println();
+                Object [][] array= new Object[3][2];
+                array[0]= new Object[i.length];
+                array[0][0]= "Item Name:";
+                System.arraycopy(i, 0, array[0], 1, array[0].length - 1);
+                array[1]= new Object[l.length+1];
+                array[1][0]= "Item ID:";
+                System.arraycopy(l, 0, array[1], 1, array[1].length - 1);
+                array[2]= new Object[km.length+1];
+                array[2][0]= "Item Quantity:";
+                System.arraycopy(km, 0, array[2], 1, array[2].length - 1);
+                for(int j=0; j<3;j++){
+                    for(int k=0; k<array[j].length; k++){
+                        writer.print(array[j][k]+" ");
+                    }
+                    writer.println();
+                }
+                writer.println();
+                writer.println();
+                writer.println();
+                writer.println();
+                writer.println("Saved Data:");
+                writer.println();
+                for (Object o : i) {
+                    writer.print(o + "#");
+                }
+                writer.println();
+                for (Object o : l) {
+                    writer.print(o + "#");
+                }
+                writer.println();
+                for (Object o : km) {
+                    writer.print(o + "#");
+                }
+                writer.close();
+                System.exit(0);
+            }
+
+        }
+    }
+
+
+
+
+    public static void createMusicNPictures() throws IOException{
+         url1 = new URL("https://t3.ftcdn.net/jpg/01/27/54/10/360_F_127541046_yLlMu84gM9kKBjzNKp6ZSwAjuydyJA48.jpg");
+         url2= new URL("https://zktecopos.com/assets/img/software/supermarket-with-food-shelves-illustration_1262-16618.jpg");
+         url3= new URL("https://t4.ftcdn.net/jpg/01/00/83/01/360_F_100830164_GkCBwckrE0g9FJrOdt4t8LFYgNN32z88.jpg");
+         url4= new URL("https://img.freepik.com/premium-vector/opposite-old-new-vector-illustration_74440-558.jpg");
+         url5= new URL("https://i0.wp.com/www.complexsql.com/wp-content/uploads/2018/01/Alter-table.png?fit=400%2C400&ssl=1");
+
+         icon= new ImageIcon(url1);
+         icon1= new ImageIcon(url2);
+         icon2= new ImageIcon(url3);
+         icon3= new ImageIcon(url4);
+         icon4= new ImageIcon(url5);
+
         Image img = icon.getImage();
         Image img1=icon1.getImage();
         Image img2=icon2.getImage();
         Image img3=icon3.getImage();
         Image img4=icon4.getImage();
+
         Image newImg = img.getScaledInstance(200, 200,  java.awt.Image.SCALE_SMOOTH);
         Image newImg1 = img1.getScaledInstance(300, 200,  java.awt.Image.SCALE_SMOOTH);
         Image newImg2 = img2.getScaledInstance(160, 240,  java.awt.Image.SCALE_SMOOTH);
         Image newImg3 = img3.getScaledInstance(208, 208,  java.awt.Image.SCALE_SMOOTH);
         Image newImg4 = img4.getScaledInstance(200, 200,  java.awt.Image.SCALE_SMOOTH);
+
         icon= new ImageIcon(newImg);
         icon1= new ImageIcon(newImg1);
         icon2= new ImageIcon(newImg2);
         icon3= new ImageIcon(newImg3);
         icon4= new ImageIcon(newImg4);
-        UIManager.put("OptionPane.messageFont", new Font("Arial", Font.BOLD,17));
-        do {
-            intro = JOptionPane.showInputDialog(null,"Enter passcode:","Login",JOptionPane.INFORMATION_MESSAGE);
-            if(intro==null){
-                System.exit(0);
-            }
-            if(intro.equals("")){
-                continue;
-            }
+    }
 
-            if (!intro.equals("password")) {
-                lockedOut++;
-                if(lockedOut<5) {
 
-                    if(lockedOut==3){
-                        JOptionPane.showMessageDialog(null,"Hint: The password starts with a p");
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Error! Wrong password. Please try again.");
-                    }
-                }
 
-                else if(lockedOut==5){
-                    JOptionPane.showMessageDialog(null,"You have entered the wrong password five times. \n            Initiating system shutdown...");
-                    System.exit(0);
-                }
-            }
 
-        } while (!intro.equals("password"));
-        JOptionPane.showMessageDialog(null, "Successful Login!");
+    public static void loadData() throws IOException{
         if(file.length()==0){
             item = new ArrayList<>(Arrays.asList("Candy", "Meat", "Alcohol", "Fruit", "Actions"));
             id = new ArrayList<>(Arrays.asList("N08D5", "M8T91", "L3N61", "P2K46"));
@@ -121,168 +262,79 @@ public class SupermarketInventory{
             }
             fileReader.close();
         }
+    }
 
+
+
+
+    public void createFile(){
+        try {
+             URL url = getClass().getResource("supermarket.txt");
+            assert url != null;
+            file = new File(url.getPath());
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null,"File not detected! Creating file...","Error!",JOptionPane.INFORMATION_MESSAGE);
+            file = new File("src/supermarket.txt");
+        }
+    }
+
+
+
+    public static void login(){
         do {
-            Object [] i = item.toArray();
+            intro = JOptionPane.showInputDialog(null,"Enter passcode:","Login",JOptionPane.INFORMATION_MESSAGE);
+            if(intro==null){
+                System.exit(0);
+            }
+            if(intro.equals("")){
+                continue;
+            }
+
+            if (!intro.equals("password")) {
+                lockedOut++;
+                if(lockedOut<5) {
+
+                    if(lockedOut==3){
+                        JOptionPane.showMessageDialog(null,"Hint: The password starts with a p");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Error! Wrong password. Please try again.");
+                    }
+                }
+
+                else if(lockedOut==5){
+                    JOptionPane.showMessageDialog(null,"You have entered the wrong password five times. \n            Initiating system shutdown...");
+                    System.exit(0);
+                }
+            }
+
+        } while (!intro.equals("password"));
+        JOptionPane.showMessageDialog(null, "Successful Login!");
+    }
+
+
+
+    public static void supermarketInventory() throws IOException{
+        do {
             id.remove("Actions");
-            Object [] l= id.toArray();
-            Object [] km= quantity.toArray();
+            i = item.toArray();
+            l= id.toArray();
+            km= quantity.toArray();
             Object [] options={"Add Item","Remove Item","Replace Item","Modify Item","Back"};
             items = JOptionPane.showOptionDialog(null, "Choose an item to oversee.", "Supermarket Inventory", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, icon, i, i[0]);
             if (items == -1) {
-                YesNo = JOptionPane.showConfirmDialog(null, "Are you sure you want to end the program?", "End Program", JOptionPane.YES_NO_OPTION);
-                if (YesNo == 0){
-                    PrintWriter writer=new PrintWriter(file);
-                    writer.println("Supermarket Inventory: ");
-                    writer.println();
-                    Object [][] array= new Object[3][2];
-                    array[0]= new Object[i.length];
-                    array[0][0]= "Item Name:";
-                    System.arraycopy(i, 0, array[0], 1, array[0].length - 1);
-                    array[1]= new Object[l.length+1];
-                    array[1][0]= "Item ID:";
-                    System.arraycopy(l, 0, array[1], 1, array[1].length - 1);
-                    array[2]= new Object[km.length+1];
-                    array[2][0]= "Item Quantity:";
-                    System.arraycopy(km, 0, array[2], 1, array[2].length - 1);
-                    for(int j=0; j<3;j++){
-                        for(int k=0; k<array[j].length; k++){
-                            writer.print(array[j][k]+" ");
-                        }
-                        writer.println();
-                    }
-                    writer.println();
-                    writer.println();
-                    writer.println();
-                    writer.println();
-                    writer.println("Saved Data:");
-                    writer.println();
-                    for (Object o : i) {
-                        writer.print(o + "#");
-                    }
-                    writer.println();
-                    for (Object o : l) {
-                        writer.print(o + "#");
-                    }
-                    writer.println();
-                    for (Object o : km) {
-                        writer.print(o + "#");
-                    }
-                    writer.close();
-                    System.exit(0);
-                }
-                else if(YesNo==1){
-                    makeupMind++;
-                    if(makeupMind==5){
-                        JOptionPane.showMessageDialog(null, "Make up your mind!");
-                    }
-                    else if(makeupMind==10){
-                        JOptionPane.showMessageDialog(null,"Fine, we'll do it for you. Initiating system shutdown!");
-                        PrintWriter writer=new PrintWriter(file);
-                        writer.println("Supermarket Inventory: ");
-                        writer.println();
-                        Object [][] array= new Object[3][2];
-                        array[0]= new Object[i.length];
-                        array[0][0]= "Item Name:";
-                        System.arraycopy(i, 0, array[0], 1, array[0].length - 1);
-                        array[1]= new Object[l.length+1];
-                        array[1][0]= "Item ID:";
-                        System.arraycopy(l, 0, array[1], 1, array[1].length - 1);
-                        array[2]= new Object[km.length+1];
-                        array[2][0]= "Item Quantity:";
-                        System.arraycopy(km, 0, array[2], 1, array[2].length - 1);
-                        for(int j=0; j<3;j++){
-                            for(int k=0; k<array[j].length; k++){
-                                writer.print(array[j][k]+" ");
-                            }
-                            writer.println();
-                        }
-                        writer.println();
-                        writer.println();
-                        writer.println();
-                        writer.println();
-                        writer.println("Saved Data:");
-                        writer.println();
-                        for (Object o : i) {
-                            writer.print(o + "#");
-                        }
-                        writer.println();
-                        for (Object o : l) {
-                            writer.print(o + "#");
-                        }
-                        writer.println();
-                        for (Object o : km) {
-                            writer.print(o + "#");
-                        }
-                        writer.close();
-                        System.exit(0);
-                    }
-                    continue;
-                }
+                specialSaveToFile();
+                continue;
             }
+
             else if(item.get(items).equals("Actions")){
                 int bro = JOptionPane.showOptionDialog(null, "Choose an action.", "Actions", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, icon1, options, options[0]);
                 if(bro==4) {
                     continue;
                 }
                 else if(bro==-1){
-                    YesNo = JOptionPane.showConfirmDialog(null, "Are you sure you want to end the program?", "End Program", JOptionPane.YES_NO_OPTION);
-
-                    if (YesNo == 0) {
-                        PrintWriter writer=new PrintWriter(file);
-                        writer.println("Supermarket Inventory: ");
-                        writer.println();
-                        Object [][] array= new Object[3][2];
-                        array[0]= new Object[i.length+1];
-                        array[0][0]= "Item Name:";
-                        for(int j=1; j<array[0].length; j++){
-                            array[0][j]= i[j-1];
-                            if(j==i.length-1){
-                                break;
-                            }
-                        }
-                        for(int j=0; j<array[0].length-1;j++){
-                            writer.print(array[0][j]+" ");
-                        }
-                        writer.println();
-                        array[1]= new Object[l.length+1];
-                        array[1][0]= "Item ID:";
-                        System.arraycopy(l, 0, array[1], 1, array[1].length - 1);
-                        for(int j=0; j<array[1].length;j++){
-                            writer.print(array[1][j]+" ");
-                        }
-                        writer.println();
-                        array[2]= new Object[km.length+1];
-                        array[2][0]= "Item Quantity:";
-                        System.arraycopy(km, 0, array[2], 1, array[2].length - 1);
-                        for(int j=0; j<array[2].length;j++){
-                            writer.print(array[2][j]+" ");
-                        }
-                        writer.println();
-                        writer.println();
-                        writer.println();
-                        writer.println();
-                        writer.println();
-                        writer.println("Saved Data:");
-                        writer.println();
-                        for (Object o : i) {
-                            writer.print(o + "#");
-                        }
-                        writer.println();
-                        for (Object o : l) {
-                            writer.print(o + "#");
-                        }
-                        writer.println();
-                        for (Object o : km) {
-                            writer.print(o + "#");
-                        }
-                        writer.close();
-                        System.exit(0);
-                    }
-                    else if(YesNo==1){
-                        continue;
-                    }
-
+                    saveToFile();
+                    continue;
                 }
                 else if(bro==0) {
                     int cancel=-1,f=-1;
@@ -673,6 +725,6 @@ public class SupermarketInventory{
             }
             JOptionPane.showMessageDialog(null, "Item: " + i[items] +"\n" +"ID: " + l[items] +"\n"+"Quantity: " + km[items] +"\n","Item Information",JOptionPane.INFORMATION_MESSAGE);
         } while(true);
-
     }
+
 }

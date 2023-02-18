@@ -16,15 +16,10 @@ public class SupermarketInventory{
     static URL url1,url2,url3,url4,url5;
     static ImageIcon icon,icon1,icon2,icon3,icon4;
     static Object [] i,l,km;
+    static SupermarketInventory inventory;
 
 
     public static void main(String[] args) throws IOException {
-        UIManager.put("OptionPane.messageFont", new Font("Arial", Font.BOLD,17));
-        SupermarketInventory inventory= new SupermarketInventory();
-        inventory.createFile();
-        createMusicNPictures();
-        login();
-        loadData();
         supermarketInventory();
     }
 
@@ -315,6 +310,13 @@ public class SupermarketInventory{
 
 
     public static void supermarketInventory() throws IOException{
+        UIManager.put("OptionPane.messageFont", new Font("Arial", Font.BOLD,17));
+        inventory= new SupermarketInventory();
+        inventory.createFile();
+        createMusicNPictures();
+        login();
+        loadData();
+        
         do {
             id.remove("Actions");
             i = item.toArray();
@@ -726,5 +728,7 @@ public class SupermarketInventory{
             JOptionPane.showMessageDialog(null, "Item: " + i[items] +"\n" +"ID: " + l[items] +"\n"+"Quantity: " + km[items] +"\n","Item Information",JOptionPane.INFORMATION_MESSAGE);
         } while(true);
     }
+
+
 
 }

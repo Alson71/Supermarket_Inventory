@@ -75,6 +75,7 @@ public class SupermarketInventory{
             for (Object o : km) {
                 writer.print(o + "#");
             }
+            writer.flush();
             writer.close();
             System.exit(0);
         }
@@ -123,6 +124,7 @@ public class SupermarketInventory{
             for (Object o : km) {
                 writer.print(o + "#");
             }
+            writer.flush();
             writer.close();
             System.exit(0);
         }
@@ -169,6 +171,7 @@ public class SupermarketInventory{
                 for (Object o : km) {
                     writer.print(o + "#");
                 }
+                writer.flush();
                 writer.close();
                 System.exit(0);
             }
@@ -316,7 +319,6 @@ public class SupermarketInventory{
         createMusicNPictures();
         login();
         loadData();
-        
         do {
             id.remove("Actions");
             i = item.toArray();

@@ -6,9 +6,10 @@ import java.util.*;
 import java.io.*;
 import org.apache.commons.io.input.*;
 
+
 public class SupermarketInventory{
 
-    static File file;
+    static File file = new File("src/supermarket.txt");
     static String intro;
     static int items, YesNo, lockedOut,makeupMind;
     static ArrayList<Object> item,id;
@@ -16,7 +17,7 @@ public class SupermarketInventory{
     static URL url1,url2,url3,url4,url5;
     static ImageIcon icon,icon1,icon2,icon3,icon4;
     static Object [] i,l,km;
-    static SupermarketInventory inventory;
+
 
 
     public static void main(String[] args) throws IOException {
@@ -26,9 +27,14 @@ public class SupermarketInventory{
 
 
     public static void saveToFile() throws IOException{
+
+        //Confirm dialog to end the program
         YesNo = JOptionPane.showConfirmDialog(null, "Are you sure you want to end the program?", "End Program", JOptionPane.YES_NO_OPTION);
+
         if (YesNo == 0) {
-            PrintWriter writer=new PrintWriter(file);
+            PrintWriter writer=new PrintWriter(file); //The data will be saved to a text file that's already instantiated
+
+            //Presentation of the list on the text file
             writer.println("Supermarket Inventory: ");
             writer.println();
             Object [][] array= new Object[3][2];
@@ -57,11 +63,15 @@ public class SupermarketInventory{
             for(int j=0; j<array[2].length;j++){
                 writer.print(array[2][j]+" ");
             }
+
+            //Spacing in the text file
             writer.println();
             writer.println();
             writer.println();
             writer.println();
             writer.println();
+
+            //The data to be parsed is at the end of the file to read from in reverse
             writer.println("Saved Data:");
             writer.println();
             for (Object o : i) {
@@ -77,6 +87,8 @@ public class SupermarketInventory{
             }
             writer.flush();
             writer.close();
+
+            //Finally, the program ends
             System.exit(0);
         }
 
@@ -84,9 +96,11 @@ public class SupermarketInventory{
 
 
 
-
+    //The method is the same as "saveToFile()", however there's a funny twist
     public static void specialSaveToFile() throws IOException{
+
         YesNo = JOptionPane.showConfirmDialog(null, "Are you sure you want to end the program?", "End Program", JOptionPane.YES_NO_OPTION);
+
         if (YesNo == 0){
             PrintWriter writer=new PrintWriter(file);
             writer.println("Supermarket Inventory: ");
@@ -129,10 +143,14 @@ public class SupermarketInventory{
             System.exit(0);
         }
         else if(YesNo==1){
+
+            //Interacts with the user if they keep on clicking no to close the program
             makeupMind++;
             if(makeupMind==5){
                 JOptionPane.showMessageDialog(null, "Make up your mind!");
             }
+
+            //After a total of 10 times, the program shutdowns for the user's indecisiveness
             else if(makeupMind==10){
                 JOptionPane.showMessageDialog(null,"Fine, we'll do it for you. Initiating system shutdown!");
                 PrintWriter writer=new PrintWriter(file);
@@ -182,7 +200,9 @@ public class SupermarketInventory{
 
 
 
-    public static void createMusicNPictures() throws IOException{
+    public static void createPictures() throws IOException{
+
+        //The picture links
          url1 = new URL("https://t3.ftcdn.net/jpg/01/27/54/10/360_F_127541046_yLlMu84gM9kKBjzNKp6ZSwAjuydyJA48.jpg");
          url2= new URL("https://zktecopos.com/assets/img/software/supermarket-with-food-shelves-illustration_1262-16618.jpg");
          url3= new URL("https://t4.ftcdn.net/jpg/01/00/83/01/360_F_100830164_GkCBwckrE0g9FJrOdt4t8LFYgNN32z88.jpg");
@@ -195,6 +215,7 @@ public class SupermarketInventory{
          icon3= new ImageIcon(url4);
          icon4= new ImageIcon(url5);
 
+        //Reformatting the images for JOptionPane
         Image img = icon.getImage();
         Image img1=icon1.getImage();
         Image img2=icon2.getImage();
@@ -218,12 +239,17 @@ public class SupermarketInventory{
 
 
     public static void loadData() throws IOException{
+
+        //Default list
         if(file.length()==0){
             item = new ArrayList<>(Arrays.asList("Candy", "Meat", "Alcohol", "Fruit", "Actions"));
             id = new ArrayList<>(Arrays.asList("N08D5", "M8T91", "L3N61", "P2K46"));
             quantity = new ArrayList<>(Arrays.asList(287, 36, 62, 322));
         }
+
+        //Saved list from text file
         else{
+
             ReversedLinesFileReader fileReader= new ReversedLinesFileReader(file, StandardCharsets.UTF_8);
             String [] array= new String[3];
             for(int i=0; i<3; i++){
@@ -231,6 +257,7 @@ public class SupermarketInventory{
             }
             Object [] i2,l2;
             String [] km2;
+
 
             i2 = array[2].split("#");
             if(i2.length==1){
@@ -259,28 +286,22 @@ public class SupermarketInventory{
                 quantity=new ArrayList<>();
             }
             fileReader.close();
+
         }
     }
 
 
 
 
-    public void createFile(){
-        try {
-             URL url = getClass().getResource("supermarket.txt");
-            assert url != null;
-            file = new File(url.getPath());
-        }catch(NullPointerException e){
-            JOptionPane.showMessageDialog(null,"File not detected! Creating file...","Error!",JOptionPane.INFORMATION_MESSAGE);
-            file = new File("src/supermarket.txt");
-        }
-    }
 
 
 
     public static void login(){
+
+        //Password dialog box
         do {
             intro = JOptionPane.showInputDialog(null,"Enter passcode:","Login",JOptionPane.INFORMATION_MESSAGE);
+
             if(intro==null){
                 System.exit(0);
             }
@@ -288,10 +309,12 @@ public class SupermarketInventory{
                 continue;
             }
 
+            //Precautions taken if the user enters the wrong password
             if (!intro.equals("password")) {
                 lockedOut++;
                 if(lockedOut<5) {
 
+                    //Password hint dialog
                     if(lockedOut==3){
                         JOptionPane.showMessageDialog(null,"Hint: The password starts with a p");
                     }
@@ -300,6 +323,7 @@ public class SupermarketInventory{
                     }
                 }
 
+                //The user will get locked out if they get the password wrong 5 times
                 else if(lockedOut==5){
                     JOptionPane.showMessageDialog(null,"You have entered the wrong password five times. \n            Initiating system shutdown...");
                     System.exit(0);
@@ -308,42 +332,60 @@ public class SupermarketInventory{
 
         } while (!intro.equals("password"));
         JOptionPane.showMessageDialog(null, "Successful Login!");
+
     }
 
 
 
     public static void supermarketInventory() throws IOException{
+
+        //Changing the style of the JOptionPane font
         UIManager.put("OptionPane.messageFont", new Font("Arial", Font.BOLD,17));
-        inventory= new SupermarketInventory();
-        inventory.createFile();
-        createMusicNPictures();
+
+        //Prerequisites before starting the program
+        createPictures();
         login();
         loadData();
+
+        //Program runs infinitely until the user clicks the "x" button on the JOptionPane
         do {
+            //Initializing the inventory data fields and actions lists
             id.remove("Actions");
             i = item.toArray();
             l= id.toArray();
             km= quantity.toArray();
             Object [] options={"Add Item","Remove Item","Replace Item","Modify Item","Back"};
+
+            //Default state of the inventory
             items = JOptionPane.showOptionDialog(null, "Choose an item to oversee.", "Supermarket Inventory", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, icon, i, i[0]);
+
+            //User wants to close the program
             if (items == -1) {
                 specialSaveToFile();
                 continue;
             }
 
+            //Actions list is displayed after clicking actions button
             else if(item.get(items).equals("Actions")){
-                int bro = JOptionPane.showOptionDialog(null, "Choose an action.", "Actions", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, icon1, options, options[0]);
-                if(bro==4) {
+                int actions = JOptionPane.showOptionDialog(null, "Choose an action.", "Actions", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, icon1, options, options[0]);
+
+                //The back button
+                if(actions==4) {
                     continue;
                 }
-                else if(bro==-1){
+
+                //User wants to close file
+                else if(actions==-1){
                     saveToFile();
                     continue;
                 }
-                else if(bro==0) {
+
+                //Add an item to the inventory
+                else if(actions==0) {
                     int cancel=-1,f=-1;
                     String k1,k2="",k3="";
                     boolean b;
+
                     do {
                         do {
                             k1 = JOptionPane.showInputDialog(null,"Enter the name of the item","Add Item",JOptionPane.INFORMATION_MESSAGE);
@@ -362,7 +404,6 @@ public class SupermarketInventory{
                                 JOptionPane.showMessageDialog(null,"The name of an item cannot have any numbers or special characters.","Error!",JOptionPane.INFORMATION_MESSAGE,null);
                             }
 
-
                         }while(k1.equalsIgnoreCase("Actions") || item.contains(k1) || !k1.matches("[a-zA-Z\\s]*"));
                         if (k1 == null) {
                             cancel = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel this action?", "Cancel", JOptionPane.YES_NO_OPTION);
@@ -376,6 +417,7 @@ public class SupermarketInventory{
                         else {
                             k1 = k1.replaceAll("\\s+", " ");
                         }
+
                         do {
                             k2 = JOptionPane.showInputDialog(null,"Enter the ID of the item","Add Item",JOptionPane.INFORMATION_MESSAGE);
                             if(k2==null) break;
@@ -389,6 +431,7 @@ public class SupermarketInventory{
                                 JOptionPane.showMessageDialog(null,"The ID of an item cannot have any numbers or special characters.","Error!",JOptionPane.INFORMATION_MESSAGE,null);
                             }
                         }while(id.contains(k2) || k2.length()>5 || !k2.matches("[a-zA-Z\\d]*"));
+
                         if (k2 == null) {
                             cancel = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel this action?", "Cancel", JOptionPane.YES_NO_OPTION);
                             if (cancel == 0) {
@@ -400,6 +443,7 @@ public class SupermarketInventory{
                         else {
                             k2 = k2.replaceAll("\\s+", " ");
                         }
+
                         do {
                             b=true;
                             try {
@@ -423,12 +467,15 @@ public class SupermarketInventory{
                             }
                         }
                     }while(k1==null || k2==null || k3==null);
+
                     if(cancel==0){
                         continue;
                     }
-                    if(k1.equalsIgnoreCase("") || k2.equalsIgnoreCase("") || k3.equalsIgnoreCase("") ){
+
+                    if(k1.equalsIgnoreCase("") || k2.equalsIgnoreCase("") || k3.equalsIgnoreCase("")){
                         continue;
                     }
+
                     item.add("Actions");
                     item.set(item.size()-2,k1);
                     id.add(k2);
@@ -438,11 +485,16 @@ public class SupermarketInventory{
                     continue;
 
                 }
-                else if(bro==1){
+
+                //Remove an item from the inventory
+                else if(actions==1){
+
+                    //Empty list
                     if(i.length == 1){
                         JOptionPane.showMessageDialog(null,"You must have items on your list first.","Empty List",JOptionPane.INFORMATION_MESSAGE);
                         continue;
                     }
+
                     int cancel=-1,k1,confirm=2;
                     Object [] huh= new Object[i.length-1];
                     System.arraycopy(i, 0, huh, 0, i.length - 1);
@@ -462,9 +514,11 @@ public class SupermarketInventory{
                         confirm = JOptionPane.showConfirmDialog(null, "Are you sure that you want to remove " + i[k1] +"?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, icon2);
 
                     }while(k1==-1 || confirm==1);
+
                     if(cancel==0){
                         continue;
                     }
+
                     item.remove(k1);
                     id.remove(k1);
                     quantity.remove(k1);
@@ -472,17 +526,23 @@ public class SupermarketInventory{
                     continue;
 
                 }
-                else if(bro==2){
+
+                //Replace an item in the inventory
+                else if(actions==2){
+
+                    //Empty list
                     if(i.length == 1){
                         JOptionPane.showMessageDialog(null,"You must have items on your list first.","Empty List",JOptionPane.INFORMATION_MESSAGE);
                         continue;
                     }
+
                     int cancel=-1,f=-1;
                     Object [] huh= new Object[i.length-1];
                     System.arraycopy(i, 0, huh, 0, i.length - 1);
                     int k1;
                     String k2="",k3="",k4="";
                     boolean b;
+
                     do {
                         k1 = JOptionPane.showOptionDialog(null,"Choose an item to replace.","Replace Item",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,icon3,huh,huh[0]);
 
@@ -495,6 +555,7 @@ public class SupermarketInventory{
                             }
                         }
                         JOptionPane.showMessageDialog(null, "Item Chosen: " + i[k1],"Item Chosen",JOptionPane.INFORMATION_MESSAGE);
+
                         do {
                             k2 = JOptionPane.showInputDialog("Enter the name to replace item");
                             if(k2==null){
@@ -507,6 +568,7 @@ public class SupermarketInventory{
                                 JOptionPane.showMessageDialog(null,"The name of an item cannot have any numbers or special characters.","Error!",JOptionPane.INFORMATION_MESSAGE,null);
                             }
                         }while(k2.equalsIgnoreCase("Actions") || !k2.matches("[a-zA-Z\\s]*"));
+
                         if (k2 == null) {
                             cancel = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel this action?", "Cancel", JOptionPane.YES_NO_OPTION);
                             if (cancel == 0) {
@@ -518,6 +580,7 @@ public class SupermarketInventory{
                         else {
                             k2 = k2.replaceAll("\\s+", " ");
                         }
+
                         do {
                             k3 = JOptionPane.showInputDialog("Enter the ID of the replaced item");
                             if(k3==null){
@@ -530,6 +593,7 @@ public class SupermarketInventory{
                                 JOptionPane.showMessageDialog(null,"The ID of an item cannot have any numbers or special characters.","Error!",JOptionPane.INFORMATION_MESSAGE,null);
                             }
                         }while(k3.length()>5 || !k3.matches("[a-zA-Z\\d]*"));
+
                         if (k3 == null) {
                             cancel = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel this action?", "Cancel", JOptionPane.YES_NO_OPTION);
                             if (cancel == 0) {
@@ -541,6 +605,7 @@ public class SupermarketInventory{
                         else {
                             k3 = k3.replaceAll("\\s+", " ");
                         }
+
                         do {
                             b=true;
                             try {
@@ -557,6 +622,7 @@ public class SupermarketInventory{
                                 JOptionPane.showMessageDialog(null,"You must type in real numbers","Error!",JOptionPane.INFORMATION_MESSAGE,null);
                             }
                         }while(!b || f<0);
+
                         if (k4 == null) {
                             cancel = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel this action?", "Cancel", JOptionPane.YES_NO_OPTION);
                             if (cancel == 0) {
@@ -564,6 +630,7 @@ public class SupermarketInventory{
                             }
                         }
                     }while(k1==-1 || k2==null || k3==null || k4==null);
+
                     if(cancel==0){
                         continue;
                     }
@@ -572,25 +639,31 @@ public class SupermarketInventory{
                     item.set(k1,k2);
                     id.set(k1,k3);
                     quantity.set(k1,f);
+
                     JOptionPane.showMessageDialog(null,"Item (" + i[k1] + ") replaced with (" + k2 + ") successfully!" ,"Item Replaced",JOptionPane.INFORMATION_MESSAGE);
                     continue;
                 }
-                else if(bro==3){
+
+                //Modify the data fields of an item: name,ID, or quantity
+                else if(actions==3){
                     String [] options2= {"Name","ID","Quantity"};
-                    if(i.length==1){
+
+                    //Empty list
+                    if(i.length == 1){
                         JOptionPane.showMessageDialog(null,"You must have items on your list first.","Empty List",JOptionPane.INFORMATION_MESSAGE);
                         continue;
                     }
-                    Object [] brother= new Object[i.length-1];
-                    Object [] sister= new Object[l.length];
-                    Object [] mother= new Object[km.length];
-                    System.arraycopy(i, 0, brother, 0, i.length - 1);
-                    System.arraycopy(l, 0, sister, 0, l.length);
-                    System.arraycopy(km, 0, mother, 0, km.length);
+
+                    Object [] modifyName = new Object[i.length-1];
+                    Object [] modifyID = new Object[l.length];
+                    Object [] modifyQuantity = new Object[km.length];
+                    System.arraycopy(i, 0, modifyName, 0, i.length - 1);
+                    System.arraycopy(l, 0, modifyID, 0, l.length);
+                    System.arraycopy(km, 0, modifyQuantity, 0, km.length);
                     int bruh,cancel1=-5,ok;
 
                     do {
-                        bruh = JOptionPane.showOptionDialog(null, "Choose an item to modify.", "Modify", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, icon4, brother, brother[0]);
+                        bruh = JOptionPane.showOptionDialog(null, "Choose an item to modify.", "Modify", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, icon4, modifyName, modifyName[0]);
                         if (bruh == -1) {
                             cancel1 = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel this action?", "Cancel", JOptionPane.YES_NO_OPTION);
                             if (cancel1 == 0) {
@@ -604,7 +677,7 @@ public class SupermarketInventory{
                     int cancel2=-5;
                     do {
 
-                        ok = JOptionPane.showOptionDialog(null, "What would you like to modify for " + brother[bruh] + "?", "Modify", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options2, options2[0]);
+                        ok = JOptionPane.showOptionDialog(null, "What would you like to modify for " + modifyName[bruh] + "?", "Modify", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options2, options2[0]);
                         if (ok == -1) {
                             cancel2= JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel this action?", "Cancel", JOptionPane.YES_NO_OPTION);
                             if(cancel2==0){
@@ -615,6 +688,8 @@ public class SupermarketInventory{
                     if(cancel2==0){
                         continue;
                     }
+
+                    //Modify item name
                     if(ok==0){
                         int cancel=5;
                         String k1;
@@ -651,8 +726,10 @@ public class SupermarketInventory{
                             continue;
                         }
                         item.set(bruh,k1);
-                        JOptionPane.showMessageDialog(null,"Item Name (" + brother[bruh] + ") changed to (" + k1 + ") successfully!" ,"Item Name Replaced",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null,"Item Name (" + modifyName[bruh] + ") changed to (" + k1 + ") successfully!" ,"Item Name Replaced",JOptionPane.INFORMATION_MESSAGE);
                     }
+
+                    //Modify item ID
                     else if(ok==1){
                         int cancel=-5;
                         String k1;
@@ -688,8 +765,10 @@ public class SupermarketInventory{
                             continue;
                         }
                         id.set(bruh,k1);
-                        JOptionPane.showMessageDialog(null,"ID of "  + brother[bruh] + ": " + sister[bruh] + " changed to " + k1 + " successfully!" ,"ID Replaced",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null,"ID of "  + modifyName[bruh] + ": " + modifyID[bruh] + " changed to " + k1 + " successfully!" ,"ID Replaced",JOptionPane.INFORMATION_MESSAGE);
                     }
+
+                    //Modify item quantity
                     else if(ok==2){
                         int cancel=-5,f=-1;
                         String k1="";
@@ -711,6 +790,7 @@ public class SupermarketInventory{
                                     JOptionPane.showMessageDialog(null,"You must type in real numbers","Error!",JOptionPane.INFORMATION_MESSAGE,null);
                                 }
                             }while(!b || f<0);
+
                             if (k1 == null) {
                                 cancel = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel this action?", "Cancel", JOptionPane.YES_NO_OPTION);
                                 if (cancel == 0) {
@@ -718,11 +798,13 @@ public class SupermarketInventory{
                                 }
                             }
                         }while(k1==null);
+
                         if(cancel==0){
                             continue;
                         }
+
                         quantity.set(bruh,f);
-                        JOptionPane.showMessageDialog(null,"Quantity of "  + brother[bruh] + ": " + mother[bruh] + " changed to " + k1 + " successfully!" ,"ID Replaced",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null,"Quantity of "  + modifyName[bruh] + ": " + modifyQuantity[bruh] + " changed to " + k1 + " successfully!" ,"ID Replaced",JOptionPane.INFORMATION_MESSAGE);
                     }
                     continue;
                 }

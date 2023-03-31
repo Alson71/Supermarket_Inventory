@@ -150,7 +150,7 @@ public class SupermarketInventory{
                 JOptionPane.showMessageDialog(null, "Make up your mind!");
             }
 
-            //After a total of 10 times, the program shutdowns for the user's indecisiveness
+            //After a total of 10 times, the program shuts down for the user's indecisiveness
             else if(makeupMind==10){
                 JOptionPane.showMessageDialog(null,"Fine, we'll do it for you. Initiating system shutdown!");
                 PrintWriter writer=new PrintWriter(file);

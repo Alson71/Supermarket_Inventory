@@ -9,6 +9,8 @@ import org.apache.commons.io.input.*;
 
 public class SupermarketInventory{
 
+    //Class declarations
+   
     static File file = new File("src/supermarket.txt");
     static String intro;
     static int items, YesNo, lockedOut,makeupMind;
@@ -26,6 +28,7 @@ public class SupermarketInventory{
 
 
 
+    //Saves the entire inventory to a text file (supermarket.txt)
     public static void saveToFile() throws IOException{
 
         //Confirm dialog to end the program
@@ -199,7 +202,7 @@ public class SupermarketInventory{
 
 
 
-
+    //Creates the images for each different inventory action
     public static void createPictures() throws IOException{
 
         //The picture links
@@ -237,7 +240,7 @@ public class SupermarketInventory{
 
 
 
-
+    //Checks to see if the program has been used before, providing a default list if it hasn't
     public static void loadData() throws IOException{
 
         //Default list
@@ -295,7 +298,7 @@ public class SupermarketInventory{
 
 
 
-
+    //Creating the login window that pops up before the user can use the inventory
     public static void login(){
 
         //Password dialog box
@@ -337,6 +340,7 @@ public class SupermarketInventory{
 
 
 
+    //The entire supermarket inventory and actions the user can do to modify the inventory
     public static void supermarketInventory() throws IOException{
 
         //Changing the style of the JOptionPane font

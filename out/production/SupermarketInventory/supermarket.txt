@@ -1,0 +1,14 @@
+Supermarket Inventory: 
+
+Item Name: Candy Meat Alcohol Fruit Chocolate 
+Item ID: N08D5 M8T91 L3N61 P2K46 DFD12 
+Item Quantity: 287 36 62 322 33 
+
+
+
+
+Saved Data:
+
+Candy#Meat#Alcohol#Fruit#Chocolate#Actions#
+N08D5#M8T91#L3N61#P2K46#DFD12#
+287#36#62#322#33#

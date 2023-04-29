@@ -45,7 +45,7 @@ public class SupermarketInventory {
 
         breakLoop = false;
         //Confirm dialog to end the program
-        YesNo = JOptionPane.showConfirmDialog(null, "Are you sure you want to end the logout?", "Log Out", JOptionPane.YES_NO_OPTION);
+        YesNo = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Log Out", JOptionPane.YES_NO_OPTION);
 
         if (YesNo == 0) {
             breakLoop = true;

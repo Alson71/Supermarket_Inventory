@@ -12,3 +12,5 @@ Sources for the pictures used:
 ["Opposite old and new vector illustration" by jehsomwang at Freepik](https://www.freepik.com/premium-vector/opposite-old-new-vector-illustration_3519446.htm)
 
 [Modify picture from SQL World](https://www.complexsql.com/alter-table-add-column-alter-table-modify-alter-table-rename/)
+
+[Cartoon Shopping Cart Png](https://www.pngkit.com/view/u2q8u2e6t4i1y3a9_cartoon-shopping-cart-png/)

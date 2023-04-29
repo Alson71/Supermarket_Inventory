@@ -7,64 +7,73 @@ import java.io.*;
 import org.apache.commons.io.input.*;
 
 
-public class SupermarketInventory{
+public class SupermarketInventory {
 
     //Class declarations
-   
+
     static File file = new File("src/supermarket.txt");
-    static String intro;
-    static int items, YesNo, lockedOut,makeupMind;
-    static ArrayList<Object> item,id;
+    static int items, YesNo, lockedOut, makeupMind;
+    static ArrayList<Object> item, id;
     static ArrayList<Integer> quantity;
-    static URL url1,url2,url3,url4,url5;
-    static ImageIcon icon,icon1,icon2,icon3,icon4;
-    static Object [] i,l,km;
+    static URL url1, url2, url3, url4, url5;
+    static ImageIcon icon, icon1, icon2, icon3, icon4;
+    static Object[] i, l, km;
+    static Login login;
+    static boolean loggedIn,breakLoop;
 
 
-
-    public static void main(String[] args) throws IOException {
-        supermarketInventory();
+    public static void main(String [] args) throws IOException  {
+        createPictures();
+        login = new Login();
     }
 
-
+    //Start the program
+    public static void startProgram() throws IOException{
+        login(login);
+        if(loggedIn) {
+            supermarketInventory();
+    }
+}
 
     //Saves the entire inventory to a text file (supermarket.txt)
-    public static void saveToFile() throws IOException{
+    public static void saveToFile() throws IOException {
 
+        breakLoop = false;
         //Confirm dialog to end the program
-        YesNo = JOptionPane.showConfirmDialog(null, "Are you sure you want to end the program?", "End Program", JOptionPane.YES_NO_OPTION);
+        YesNo = JOptionPane.showConfirmDialog(null, "Are you sure you want to end the logout?", "Log Out", JOptionPane.YES_NO_OPTION);
 
         if (YesNo == 0) {
-            PrintWriter writer=new PrintWriter(file); //The data will be saved to a text file that's already instantiated
+            breakLoop = true;
+            PrintWriter writer = new PrintWriter(file); //The data will be saved to a text file that's already instantiated
 
             //Presentation of the list on the text file
             writer.println("Supermarket Inventory: ");
             writer.println();
-            Object [][] array= new Object[3][2];
-            array[0]= new Object[i.length+1];
-            array[0][0]= "Item Name:";
-            for(int j=1; j<array[0].length; j++){
-                array[0][j]= i[j-1];
-                if(j==i.length-1){
+            Object[][] array = new Object[3][2];
+            array[0] = new Object[i.length + 1];
+            array[0][0] = "Item Name:";
+            for (int j = 1; j < array[0].length; j++) {
+                array[0][j] = i[j - 1];
+                if (j == i.length - 1) {
                     break;
                 }
             }
-            for(int j=0; j<array[0].length-1;j++){
-                writer.print(array[0][j]+" ");
+            for (int j = 0; j < array[0].length - 1; j++) {
+                writer.print(array[0][j] + " ");
             }
             writer.println();
-            array[1]= new Object[l.length+1];
-            array[1][0]= "Item ID:";
+            array[1] = new Object[l.length + 1];
+            array[1][0] = "Item ID:";
             System.arraycopy(l, 0, array[1], 1, array[1].length - 1);
-            for(int j=0; j<array[1].length;j++){
-                writer.print(array[1][j]+" ");
+            for (int j = 0; j < array[1].length; j++) {
+                writer.print(array[1][j] + " ");
             }
             writer.println();
-            array[2]= new Object[km.length+1];
-            array[2][0]= "Item Quantity:";
+            array[2] = new Object[km.length + 1];
+            array[2][0] = "Item Quantity:";
             System.arraycopy(km, 0, array[2], 1, array[2].length - 1);
-            for(int j=0; j<array[2].length;j++){
-                writer.print(array[2][j]+" ");
+            for (int j = 0; j < array[2].length; j++) {
+                writer.print(array[2][j] + " ");
             }
 
             //Spacing in the text file
@@ -91,36 +100,36 @@ public class SupermarketInventory{
             writer.flush();
             writer.close();
 
-            //Finally, the program ends
-            System.exit(0);
         }
 
     }
 
 
-
     //The method is the same as "saveToFile()", however there's a funny twist
-    public static void specialSaveToFile() throws IOException{
+    public static void specialSaveToFile() throws IOException {
 
-        YesNo = JOptionPane.showConfirmDialog(null, "Are you sure you want to end the program?", "End Program", JOptionPane.YES_NO_OPTION);
+        breakLoop = false;
 
-        if (YesNo == 0){
-            PrintWriter writer=new PrintWriter(file);
+        YesNo = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Log Out", JOptionPane.YES_NO_OPTION);
+
+        if (YesNo == 0) {
+            breakLoop = true;
+            PrintWriter writer = new PrintWriter(file);
             writer.println("Supermarket Inventory: ");
             writer.println();
-            Object [][] array= new Object[3][2];
-            array[0]= new Object[i.length];
-            array[0][0]= "Item Name:";
+            Object[][] array = new Object[3][2];
+            array[0] = new Object[i.length];
+            array[0][0] = "Item Name:";
             System.arraycopy(i, 0, array[0], 1, array[0].length - 1);
-            array[1]= new Object[l.length+1];
-            array[1][0]= "Item ID:";
+            array[1] = new Object[l.length + 1];
+            array[1][0] = "Item ID:";
             System.arraycopy(l, 0, array[1], 1, array[1].length - 1);
-            array[2]= new Object[km.length+1];
-            array[2][0]= "Item Quantity:";
+            array[2] = new Object[km.length + 1];
+            array[2][0] = "Item Quantity:";
             System.arraycopy(km, 0, array[2], 1, array[2].length - 1);
-            for(int j=0; j<3;j++){
-                for(int k=0; k<array[j].length; k++){
-                    writer.print(array[j][k]+" ");
+            for (int j = 0; j < 3; j++) {
+                for (int k = 0; k < array[j].length; k++) {
+                    writer.print(array[j][k] + " ");
                 }
                 writer.println();
             }
@@ -143,35 +152,35 @@ public class SupermarketInventory{
             }
             writer.flush();
             writer.close();
-            System.exit(0);
-        }
-        else if(YesNo==1){
+
+        } else if (YesNo == 1) {
 
             //Interacts with the user if they keep on clicking no to close the program
             makeupMind++;
-            if(makeupMind==5){
+            if (makeupMind == 5) {
                 JOptionPane.showMessageDialog(null, "Make up your mind!");
             }
 
             //After a total of 10 times, the program shuts down for the user's indecisiveness
-            else if(makeupMind==10){
-                JOptionPane.showMessageDialog(null,"Fine, we'll do it for you. Initiating system shutdown!");
-                PrintWriter writer=new PrintWriter(file);
+            else if (makeupMind == 10) {
+                breakLoop = true;
+                JOptionPane.showMessageDialog(null, "Fine, we'll do it for you. Logging off!");
+                PrintWriter writer = new PrintWriter(file);
                 writer.println("Supermarket Inventory: ");
                 writer.println();
-                Object [][] array= new Object[3][2];
-                array[0]= new Object[i.length];
-                array[0][0]= "Item Name:";
+                Object[][] array = new Object[3][2];
+                array[0] = new Object[i.length];
+                array[0][0] = "Item Name:";
                 System.arraycopy(i, 0, array[0], 1, array[0].length - 1);
-                array[1]= new Object[l.length+1];
-                array[1][0]= "Item ID:";
+                array[1] = new Object[l.length + 1];
+                array[1][0] = "Item ID:";
                 System.arraycopy(l, 0, array[1], 1, array[1].length - 1);
-                array[2]= new Object[km.length+1];
-                array[2][0]= "Item Quantity:";
+                array[2] = new Object[km.length + 1];
+                array[2][0] = "Item Quantity:";
                 System.arraycopy(km, 0, array[2], 1, array[2].length - 1);
-                for(int j=0; j<3;j++){
-                    for(int k=0; k<array[j].length; k++){
-                        writer.print(array[j][k]+" ");
+                for (int j = 0; j < 3; j++) {
+                    for (int k = 0; k < array[j].length; k++) {
+                        writer.print(array[j][k] + " ");
                     }
                     writer.println();
                 }
@@ -194,149 +203,146 @@ public class SupermarketInventory{
                 }
                 writer.flush();
                 writer.close();
-                System.exit(0);
+
             }
 
         }
     }
 
 
-
     //Creates the images for each different inventory action
-    public static void createPictures() throws IOException{
+    public static void createPictures() throws IOException {
 
         //The picture links
-         url1 = new URL("https://t3.ftcdn.net/jpg/01/27/54/10/360_F_127541046_yLlMu84gM9kKBjzNKp6ZSwAjuydyJA48.jpg");
-         url2= new URL("https://zktecopos.com/assets/img/software/supermarket-with-food-shelves-illustration_1262-16618.jpg");
-         url3= new URL("https://t4.ftcdn.net/jpg/01/00/83/01/360_F_100830164_GkCBwckrE0g9FJrOdt4t8LFYgNN32z88.jpg");
-         url4= new URL("https://img.freepik.com/premium-vector/opposite-old-new-vector-illustration_74440-558.jpg");
-         url5= new URL("https://i0.wp.com/www.complexsql.com/wp-content/uploads/2018/01/Alter-table.png?fit=400%2C400&ssl=1");
+        url1 = new URL("https://t3.ftcdn.net/jpg/01/27/54/10/360_F_127541046_yLlMu84gM9kKBjzNKp6ZSwAjuydyJA48.jpg");
+        url2 = new URL("https://zktecopos.com/assets/img/software/supermarket-with-food-shelves-illustration_1262-16618.jpg");
+        url3 = new URL("https://t4.ftcdn.net/jpg/01/00/83/01/360_F_100830164_GkCBwckrE0g9FJrOdt4t8LFYgNN32z88.jpg");
+        url4 = new URL("https://img.freepik.com/premium-vector/opposite-old-new-vector-illustration_74440-558.jpg");
+        url5 = new URL("https://i0.wp.com/www.complexsql.com/wp-content/uploads/2018/01/Alter-table.png?fit=400%2C400&ssl=1");
 
-         icon= new ImageIcon(url1);
-         icon1= new ImageIcon(url2);
-         icon2= new ImageIcon(url3);
-         icon3= new ImageIcon(url4);
-         icon4= new ImageIcon(url5);
+        icon = new ImageIcon(url1);
+        icon1 = new ImageIcon(url2);
+        icon2 = new ImageIcon(url3);
+        icon3 = new ImageIcon(url4);
+        icon4 = new ImageIcon(url5);
 
         //Reformatting the images for JOptionPane
         Image img = icon.getImage();
-        Image img1=icon1.getImage();
-        Image img2=icon2.getImage();
-        Image img3=icon3.getImage();
-        Image img4=icon4.getImage();
+        Image img1 = icon1.getImage();
+        Image img2 = icon2.getImage();
+        Image img3 = icon3.getImage();
+        Image img4 = icon4.getImage();
 
-        Image newImg = img.getScaledInstance(200, 200,  java.awt.Image.SCALE_SMOOTH);
-        Image newImg1 = img1.getScaledInstance(300, 200,  java.awt.Image.SCALE_SMOOTH);
-        Image newImg2 = img2.getScaledInstance(160, 240,  java.awt.Image.SCALE_SMOOTH);
-        Image newImg3 = img3.getScaledInstance(208, 208,  java.awt.Image.SCALE_SMOOTH);
-        Image newImg4 = img4.getScaledInstance(200, 200,  java.awt.Image.SCALE_SMOOTH);
+        Image newImg = img.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+        Image newImg1 = img1.getScaledInstance(300, 200, java.awt.Image.SCALE_SMOOTH);
+        Image newImg2 = img2.getScaledInstance(160, 240, java.awt.Image.SCALE_SMOOTH);
+        Image newImg3 = img3.getScaledInstance(208, 208, java.awt.Image.SCALE_SMOOTH);
+        Image newImg4 = img4.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
 
-        icon= new ImageIcon(newImg);
-        icon1= new ImageIcon(newImg1);
-        icon2= new ImageIcon(newImg2);
-        icon3= new ImageIcon(newImg3);
-        icon4= new ImageIcon(newImg4);
+        icon = new ImageIcon(newImg);
+        icon1 = new ImageIcon(newImg1);
+        icon2 = new ImageIcon(newImg2);
+        icon3 = new ImageIcon(newImg3);
+        icon4 = new ImageIcon(newImg4);
     }
 
 
-
     //Checks to see if the program has been used before, providing a default list if it hasn't
-    public static void loadData() throws IOException{
+    public static void loadData() throws IOException {
 
         //Default list
-        if(file.length()==0){
+        if (file.length() == 0) {
             item = new ArrayList<>(Arrays.asList("Candy", "Meat", "Alcohol", "Fruit", "Actions"));
             id = new ArrayList<>(Arrays.asList("N08D5", "M8T91", "L3N61", "P2K46"));
             quantity = new ArrayList<>(Arrays.asList(287, 36, 62, 322));
         }
 
         //Saved list from text file
-        else{
+        else {
 
-            ReversedLinesFileReader fileReader= new ReversedLinesFileReader(file, StandardCharsets.UTF_8);
-            String [] array= new String[3];
-            for(int i=0; i<3; i++){
-                array[i]= fileReader.readLine();
+            ReversedLinesFileReader fileReader = new ReversedLinesFileReader(file, StandardCharsets.UTF_8);
+            String[] array = new String[3];
+            for (int i = 0; i < 3; i++) {
+                array[i] = fileReader.readLine();
             }
-            Object [] i2,l2;
-            String [] km2;
+            Object[] i2, l2;
+            String[] km2;
 
 
             i2 = array[2].split("#");
-            if(i2.length==1){
-                item=new ArrayList<>();
+            if (i2.length == 1) {
+                item = new ArrayList<>();
                 item.add("Actions");
-            }
-            else {
+            } else {
                 item = new ArrayList<>(Arrays.asList(i2));
+
             }
-            if(array[1].length()!=0) {
+
+
+            if (array[1].length() != 0) {
                 l2 = array[1].split("#");
                 id = new ArrayList<>(Arrays.asList(l2));
+            } else {
+                id = new ArrayList<>();
             }
-            else{
-                id=new ArrayList<>();
-            }
-            if(array[2].length()!=0) {
+
+
+            if (array[2].length() != 0) {
                 km2 = array[0].split("#");
                 quantity = new ArrayList<>();
                 for (String s : km2) {
                     int j = Integer.parseInt(s);
                     quantity.add(j);
                 }
+            } else {
+                quantity = new ArrayList<>();
             }
-            else{
-                quantity=new ArrayList<>();
-            }
+
+
             fileReader.close();
 
         }
     }
 
 
-
-
-
-
     //Creating the login window that pops up before the user can use the inventory
-    public static void login(){
+    public static void login(Login login) {
 
-        //Password dialog box
-        do {
-            intro = JOptionPane.showInputDialog(null,"Enter passcode:","Login",JOptionPane.INFORMATION_MESSAGE);
+        loggedIn = false;
 
-            if(intro==null){
+        //Precautions taken if the user enters the wrong password
+
+        if (!login.passwordTextField.getText().equals("password")) {
+            lockedOut++;
+            if (lockedOut < 5) {
+
+                //Password hint dialog
+                if (lockedOut == 3) {
+                    JOptionPane.showMessageDialog(login, "Hint: The password starts with a p");
+                } else {
+                    JOptionPane.showMessageDialog(login, "Error! Wrong password. Please try again.");
+                }
+            }
+
+            //The user will get locked out if they get the password wrong 5 times
+            else if (lockedOut == 5) {
+                JOptionPane.showMessageDialog(login, "You have entered the wrong password five times. \n            Initiating system shutdown...");
                 System.exit(0);
             }
-            if(intro.equals("")){
-                continue;
-            }
+        }
+        else {
 
-            //Precautions taken if the user enters the wrong password
-            if (!intro.equals("password")) {
-                lockedOut++;
-                if(lockedOut<5) {
+            String username = login.usernameTextField.getText().replaceAll("\\s+",""); //No spaces allowed in a username
+            JLabel label = new JLabel("        Welcome " + username + "!");
+            JOptionPane.showMessageDialog(login,label,"Successful Login",JOptionPane.INFORMATION_MESSAGE);
+            loggedIn = true;
+            login.dispose();
+        }
 
-                    //Password hint dialog
-                    if(lockedOut==3){
-                        JOptionPane.showMessageDialog(null,"Hint: The password starts with a p");
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Error! Wrong password. Please try again.");
-                    }
-                }
 
-                //The user will get locked out if they get the password wrong 5 times
-                else if(lockedOut==5){
-                    JOptionPane.showMessageDialog(null,"You have entered the wrong password five times. \n            Initiating system shutdown...");
-                    System.exit(0);
-                }
-            }
 
-        } while (!intro.equals("password"));
-        JOptionPane.showMessageDialog(null, "Successful Login!");
+}
 
-    }
 
 
 
@@ -346,9 +352,8 @@ public class SupermarketInventory{
         //Changing the style of the JOptionPane font
         UIManager.put("OptionPane.messageFont", new Font("Arial", Font.BOLD,17));
 
-        //Prerequisites before starting the program
-        createPictures();
-        login();
+        //Prerequisite to starting the program
+        login.dispose();
         loadData();
 
         //Program runs infinitely until the user clicks the "x" button on the JOptionPane
@@ -366,7 +371,13 @@ public class SupermarketInventory{
             //User wants to close the program
             if (items == -1) {
                 specialSaveToFile();
-                continue;
+
+                if(breakLoop) {
+                    break;
+                }
+                else{
+                    continue;
+                }
             }
 
             //Actions list is displayed after clicking actions button
@@ -378,10 +389,16 @@ public class SupermarketInventory{
                     continue;
                 }
 
-                //User wants to close file
-                else if(actions==-1){
+                //User wants to close program
+                else if(actions ==-1){
                     saveToFile();
-                    continue;
+
+                    if(breakLoop) {
+                        break;
+                    }
+                    else{
+                        continue;
+                    }
                 }
 
                 //Add an item to the inventory
@@ -815,6 +832,11 @@ public class SupermarketInventory{
             }
             JOptionPane.showMessageDialog(null, "Item: " + i[items] +"\n" +"ID: " + l[items] +"\n"+"Quantity: " + km[items] +"\n","Item Information",JOptionPane.INFORMATION_MESSAGE);
         } while(true);
+
+        //Puts the user back to the login screen, resetting their login and fake close program attempts
+        login = new Login();
+        makeupMind = 0;
+        lockedOut = 0;
     }
 
 

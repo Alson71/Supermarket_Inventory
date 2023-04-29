@@ -15,15 +15,20 @@ public class SupermarketInventory {
     static int items, YesNo, lockedOut, makeupMind;
     static ArrayList<Object> item, id;
     static ArrayList<Integer> quantity;
-    static URL url1, url2, url3, url4, url5;
+     URL url1 = getClass().getResource("Images/supermarket.jpg");
+     URL url2 = getClass().getResource("Images/supermarket2.jpg");
+     URL url3 = getClass().getResource("Images/trashcan.jpg");
+     URL url4 = getClass().getResource("Images/oldAndNew.png");
+     URL url5 = getClass().getResource("Images/modify.png");
     static ImageIcon icon, icon1, icon2, icon3, icon4;
     static Object[] i, l, km;
     static Login login;
     static boolean loggedIn,breakLoop;
 
 
-    public static void main(String [] args) throws IOException  {
-        createPictures();
+    public static void main(String [] args) {
+        SupermarketInventory inventory = new SupermarketInventory();
+        inventory.createPictures();
         login = new Login();
     }
 
@@ -211,14 +216,9 @@ public class SupermarketInventory {
 
 
     //Creates the images for each different inventory action
-    public static void createPictures() throws IOException {
+    public void createPictures() {
 
-        //The picture links
-        url1 = new URL("https://t3.ftcdn.net/jpg/01/27/54/10/360_F_127541046_yLlMu84gM9kKBjzNKp6ZSwAjuydyJA48.jpg");
-        url2 = new URL("https://zktecopos.com/assets/img/software/supermarket-with-food-shelves-illustration_1262-16618.jpg");
-        url3 = new URL("https://t4.ftcdn.net/jpg/01/00/83/01/360_F_100830164_GkCBwckrE0g9FJrOdt4t8LFYgNN32z88.jpg");
-        url4 = new URL("https://img.freepik.com/premium-vector/opposite-old-new-vector-illustration_74440-558.jpg");
-        url5 = new URL("https://i0.wp.com/www.complexsql.com/wp-content/uploads/2018/01/Alter-table.png?fit=400%2C400&ssl=1");
+        //All pictures for the supermarket program
 
         icon = new ImageIcon(url1);
         icon1 = new ImageIcon(url2);

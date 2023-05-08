@@ -36,9 +36,8 @@ public class SupermarketInventory {
     //Start the program
     public static void startProgram() throws IOException{
         login(login);
-        if(loggedIn) {
-            supermarketInventory();
-    }
+        if(loggedIn) supermarketInventory();
+    
 }
 
     //Saves the entire inventory to a text file (supermarket.txt)

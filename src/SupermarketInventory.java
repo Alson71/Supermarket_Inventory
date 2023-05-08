@@ -626,7 +626,7 @@ public class SupermarketInventory {
 
                             k2 = JOptionPane.showInputDialog("Enter the name to replace item");
 
-                            if(k2==null) break;
+                            if(k2 == null) break;
 
                             if(k2.equalsIgnoreCase("Actions"))
                                 JOptionPane.showMessageDialog(null,"You can't make another \"Actions\" button.");
@@ -664,7 +664,7 @@ public class SupermarketInventory {
                                 JOptionPane.showMessageDialog(null,"The ID of an item cannot have any numbers or special characters.","Error!",JOptionPane.INFORMATION_MESSAGE,null);
 
                         }
-                        while(k3.length()>5 || !k3.matches("[a-zA-Z\\d]*"));
+                        while(k3.length() > 5 || !k3.matches("[a-zA-Z\\d]*"));
 
 
                         if (k3 == null) {
@@ -845,6 +845,7 @@ public class SupermarketInventory {
                             do
                             {
                                 k1 = JOptionPane.showInputDialog(null, "What is the new ID of your item?", "ID Change", JOptionPane.INFORMATION_MESSAGE);
+                                
                                 if (id.contains(k1))
                                     JOptionPane.showMessageDialog(null,"Two items can't have the same ID.","Error!",JOptionPane.INFORMATION_MESSAGE,null);
 
@@ -861,7 +862,7 @@ public class SupermarketInventory {
                             while(id.contains(k1) || k1.length() > 5 || !k1.matches("[a-zA-Z\\d]*"));
 
 
-                            if(k1==null) {
+                            if(k1 == null) {
                                 cancel = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel this action?", "Cancel", JOptionPane.YES_NO_OPTION);
                                 if (cancel == 0) break;
 
@@ -872,17 +873,17 @@ public class SupermarketInventory {
                         }
                         while(k1 == null);
 
-                        if(cancel==0) continue;
+                        if(cancel == 0) continue;
 
                         id.set(bruh,k1);
                         JOptionPane.showMessageDialog(null,"ID of "  + modifyName[bruh] + ": " + modifyID[bruh] + " changed to " + k1 + " successfully!" ,"ID Replaced",JOptionPane.INFORMATION_MESSAGE);
                     }
 
                     //Modify item quantity
-                    else if(ok==2){
+                    else if(ok == 2){
 
                         int cancel = -5,f = -1;
-                        String k1 ="";
+                        String k1 = "";
                         boolean b;
 
                         do
@@ -894,7 +895,8 @@ public class SupermarketInventory {
                                 try
                                 {
                                     k1 = JOptionPane.showInputDialog(null, "What is the new quantity of your item?", "ID Change", JOptionPane.INFORMATION_MESSAGE);
-                                    if(k1==null) break;
+                                    
+                                    if(k1 == null) break;
 
                                     f = Integer.parseInt(k1);
 

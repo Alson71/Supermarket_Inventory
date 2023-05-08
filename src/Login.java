@@ -84,9 +84,11 @@ public class Login extends JFrame implements ActionListener{
             //Makes sure that the user fills out a username and password into the text fields
             if(!usernameTextField.getText().equals("") && !passwordTextField.getText().equals("")){
 
-                try {
+                try 
+                {
                     SupermarketInventory.startProgram(); //Starts the program
-                } catch(IOException ex){
+                } 
+                catch(IOException ex){
                     JOptionPane.showMessageDialog(this,"IOException has been thrown!");
                     System.exit(0);
                 }

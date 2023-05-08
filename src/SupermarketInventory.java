@@ -383,7 +383,7 @@ public class SupermarketInventory {
 
         //Program runs infinitely until the user clicks the "x" button on the JOptionPane
         do {
-            //Initializing the inventory data fields and actions lists
+            //Initializing the inventory data fields and actions list
             id.remove("Actions");
             i = item.toArray();
             l = id.toArray();

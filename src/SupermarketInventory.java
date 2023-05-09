@@ -11,7 +11,6 @@ public class SupermarketInventory {
 
     //Class declarations
     File file = new File("src/supermarket.txt");
-
     static SupermarketInventory inventory = new SupermarketInventory();
     static int items, YesNo, lockedOut, makeupMind;
     static ArrayList<Object> item, id;

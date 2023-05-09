@@ -24,6 +24,8 @@ public class SupermarketInventory {
     static Object [] i, l, km;
     static Login login;
     static boolean loggedIn,breakLoop;
+    
+    
 
     public static void main(String [] args)
     {

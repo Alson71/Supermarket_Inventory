@@ -15,15 +15,17 @@ public class SupermarketInventory {
     static int items, YesNo, lockedOut, makeupMind;
     static ArrayList<Object> item, id;
     static ArrayList<Integer> quantity;
+    static ImageIcon icon, icon1, icon2, icon3, icon4;
+    static Object [] i, l, km;
+    static Login login;
+    static boolean loggedIn,breakLoop;
+    
+    //Every picture used in the inventory
     URL url1 = getClass().getResource("Images/supermarket.jpg");
     URL url2 = getClass().getResource("Images/supermarket2.jpg");
     URL url3 = getClass().getResource("Images/trashcan.jpg");
     URL url4 = getClass().getResource("Images/oldAndNew.png");
     URL url5 = getClass().getResource("Images/modify.png");
-    static ImageIcon icon, icon1, icon2, icon3, icon4;
-    static Object [] i, l, km;
-    static Login login;
-    static boolean loggedIn,breakLoop;
     
     
 

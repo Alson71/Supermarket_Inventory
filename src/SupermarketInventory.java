@@ -16,11 +16,11 @@ public class SupermarketInventory {
     static int items, YesNo, lockedOut, makeupMind;
     static ArrayList<Object> item, id;
     static ArrayList<Integer> quantity;
-     URL url1 = getClass().getResource("Images/supermarket.jpg");
-     URL url2 = getClass().getResource("Images/supermarket2.jpg");
-     URL url3 = getClass().getResource("Images/trashcan.jpg");
-     URL url4 = getClass().getResource("Images/oldAndNew.png");
-     URL url5 = getClass().getResource("Images/modify.png");
+    URL url1 = getClass().getResource("Images/supermarket.jpg");
+    URL url2 = getClass().getResource("Images/supermarket2.jpg");
+    URL url3 = getClass().getResource("Images/trashcan.jpg");
+    URL url4 = getClass().getResource("Images/oldAndNew.png");
+    URL url5 = getClass().getResource("Images/modify.png");
     static ImageIcon icon, icon1, icon2, icon3, icon4;
     static Object [] i, l, km;
     static Login login;
@@ -33,13 +33,15 @@ public class SupermarketInventory {
         login = new Login();
     }
 
+    
     //Start the program
     public static void startProgram() throws IOException{
         login(login);
         if(loggedIn) supermarketInventory();
-    
-}
 
+    }
+
+    
     //Saves the entire inventory to a text file (supermarket.txt)
     public void saveToFile() throws IOException {
 
@@ -110,6 +112,7 @@ public class SupermarketInventory {
 
     }
 
+    
 
     //The method is the same as "saveToFile()", however there's a funny twist
     public void specialSaveToFile() throws IOException {
@@ -178,7 +181,7 @@ public class SupermarketInventory {
             if (makeupMind == 5) JOptionPane.showMessageDialog(null, "Make up your mind!");
 
 
-            //After a total of 10 times, the program shuts down for the user's indecisiveness
+                //After a total of 10 times, the program shuts down for the user's indecisiveness
             else if (makeupMind == 10) {
 
                 breakLoop = true;
@@ -235,10 +238,10 @@ public class SupermarketInventory {
                 writer.close();
 
             }
-
         }
     }
 
+    
 
     //Creates the images for each different inventory action
     public void createPictures() {
@@ -271,6 +274,7 @@ public class SupermarketInventory {
         icon4 = new ImageIcon(newImg4);
     }
 
+    
 
     //Checks to see if the program has been used before, providing a default list if it hasn't
     public void loadData() throws IOException {
@@ -330,6 +334,7 @@ public class SupermarketInventory {
         }
     }
 
+    
 
     //Creating the login window that pops up before the user can use the inventory
     public static void login(Login login) {
@@ -363,14 +368,12 @@ public class SupermarketInventory {
             loggedIn = true;
             login.dispose();
         }
-
-
-
-}
+    }
 
 
 
 
+    
     //The entire supermarket inventory and actions the user can do to modify the inventory
     public static void supermarketInventory() throws IOException{
 
@@ -381,8 +384,9 @@ public class SupermarketInventory {
         login.dispose();
         inventory.loadData();
 
-        //Program runs infinitely until the user clicks the "x" button on the JOptionPane
-        do {
+        //Program runs infinitely until the user clicks the "exit" button on the JOptionPane
+        do
+        {
             //Initializing the inventory data fields and actions list
             id.remove("Actions");
             i = item.toArray();
@@ -411,7 +415,7 @@ public class SupermarketInventory {
                 if(actions==4) continue;
 
 
-                //User wants to close program
+                    //User wants to close program
                 else if(actions ==-1){
 
                     inventory.saveToFile();
@@ -421,11 +425,13 @@ public class SupermarketInventory {
 
                 }
 
+                
+                
                 //Add an item to the inventory
-                else if(actions==0) {
+                else if(actions == 0) {
 
-                    int cancel=-1,f=-1;
-                    String k1,k2="",k3="";
+                    int cancel = -1,f = -1;
+                    String k1,k2 = "",k3 = "";
                     boolean b;
 
                     do {
@@ -468,17 +474,17 @@ public class SupermarketInventory {
 
                             k2 = JOptionPane.showInputDialog(null,"Enter the ID of the item","Add Item",JOptionPane.INFORMATION_MESSAGE);
 
-                            if(k2==null) break;
+                            if(k2 == null) break;
 
                             if(id.contains(k2)) JOptionPane.showMessageDialog(null,"Two items cannot have the same ID.","Error!",JOptionPane.INFORMATION_MESSAGE);
 
-                            else if(k2.length()>5) JOptionPane.showMessageDialog(null,"The ID must be within five characters.","Error!",JOptionPane.INFORMATION_MESSAGE);
+                            else if(k2.length() > 5) JOptionPane.showMessageDialog(null,"The ID must be within five characters.","Error!",JOptionPane.INFORMATION_MESSAGE);
 
                             else if(!k2.matches("[a-zA-Z\\d]*"))
                                 JOptionPane.showMessageDialog(null,"The ID of an item cannot have any numbers or special characters.","Error!",JOptionPane.INFORMATION_MESSAGE,null);
 
                         }
-                        while(id.contains(k2) || k2.length()>5 || !k2.matches("[a-zA-Z\\d]*"));
+                        while(id.contains(k2) || k2.length() > 5 || !k2.matches("[a-zA-Z\\d]*"));
 
 
                         if (k2 == null) {
@@ -496,23 +502,23 @@ public class SupermarketInventory {
 
                         do {
 
-                            b=true;
+                            b = true;
 
                             try
                             {
                                 k3 = JOptionPane.showInputDialog(null,"Enter the quantity of the item","Add Item",JOptionPane.INFORMATION_MESSAGE);
 
-                                if(k3==null) break;
+                                if(k3 == null) break;
 
                                 f = Integer.parseInt(k3);
 
-                                if(f<0)
+                                if(f < 0)
                                     JOptionPane.showMessageDialog(null,"The quantity must be greater than 0.","Error!",JOptionPane.INFORMATION_MESSAGE,null);
 
                             }
 
                             catch(Exception e){
-                                b=false;
+                                b = false;
                                 JOptionPane.showMessageDialog(null,"You must type in real numbers","Error!",JOptionPane.INFORMATION_MESSAGE,null);
                             }
 
@@ -527,9 +533,9 @@ public class SupermarketInventory {
 
                         }
                     }
-                    while(k1==null || k2==null || k3==null);
+                    while(k1 == null || k2 == null || k3 == null);
 
-                    if(cancel==0) continue;
+                    if(cancel == 0) continue;
 
 
                     if(k1.equalsIgnoreCase("") || k2.equalsIgnoreCase("") || k3.equalsIgnoreCase(""))
@@ -546,8 +552,10 @@ public class SupermarketInventory {
 
                 }
 
+                
+                
                 //Remove an item from the inventory
-                else if(actions==1){
+                else if(actions == 1){
 
                     //Empty list
                     if(i.length == 1){
@@ -563,7 +571,7 @@ public class SupermarketInventory {
                     {
 
                         k1 = JOptionPane.showOptionDialog(null,"Choose an item to remove.","Remove Item",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,icon2,huh,huh[0]);
-                        if(k1==-1) {
+                        if(k1 == -1) {
                             cancel = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel this action?", "Cancel", JOptionPane.YES_NO_OPTION);
 
                             if (cancel == 0) break;
@@ -574,10 +582,10 @@ public class SupermarketInventory {
                         confirm = JOptionPane.showConfirmDialog(null, "Are you sure that you want to remove " + i[k1] +"?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, icon2);
 
                     }
-                    while(k1==-1 || confirm==1);
+                    while(k1 == -1 || confirm == 1);
 
 
-                    if(cancel==0) continue;
+                    if(cancel == 0) continue;
 
 
                     item.remove(k1);
@@ -589,8 +597,11 @@ public class SupermarketInventory {
 
                 }
 
+                
+                
+                
                 //Replace an item in the inventory
-                else if(actions==2){
+                else if(actions == 2){
 
                     //Empty list
                     if(i.length == 1){
@@ -655,9 +666,9 @@ public class SupermarketInventory {
 
                             k3 = JOptionPane.showInputDialog("Enter the ID of the replaced item");
 
-                            if(k3==null) break;
+                            if(k3 == null) break;
 
-                            if(k3.length()>5)
+                            if(k3.length() > 5)
                                 JOptionPane.showMessageDialog(null,"The ID must be within five characters.","Error!",JOptionPane.INFORMATION_MESSAGE);
 
                             else if(!k3.matches("[a-zA-Z\\d]*"))
@@ -726,11 +737,13 @@ public class SupermarketInventory {
                     continue;
                 }
 
+                
+                
 
                 //Modify the data fields of an item: name,ID, or quantity
-                else if(actions==3){
+                else if(actions == 3){
 
-                    String [] options2= {"Name","ID","Quantity"};
+                    String [] options2 = {"Name","ID","Quantity"};
 
                     //Empty list
                     if(i.length == 1){
@@ -765,7 +778,7 @@ public class SupermarketInventory {
 
                     int cancel2 = -5;
 
-                    do 
+                    do
                     {
 
                         ok = JOptionPane.showOptionDialog(null, "What would you like to modify for " + modifyName[bruh] + "?", "Modify", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options2, options2[0]);
@@ -773,22 +786,23 @@ public class SupermarketInventory {
                         if (ok == -1) {
 
                             cancel2= JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel this action?", "Cancel", JOptionPane.YES_NO_OPTION);
-                            if(cancel2==0) break;
+                            if(cancel2 == 0) break;
 
                         }
                     }
-                    while(cancel2 == 1 && ok ==-1);
+                    while(cancel2 == 1 && ok == -1);
 
-                    if(cancel2==0) continue;
+                    if(cancel2 == 0) continue;
 
+                    
 
                     //Modify item name
-                    if(ok==0){
+                    if(ok == 0){
 
                         int cancel = 5;
                         String k1;
-                        
-                        do 
+
+                        do
                         {
 
                             do
@@ -805,7 +819,7 @@ public class SupermarketInventory {
 
                                 }
 
-                                else if(k1==null) break;
+                                else if(k1 == null) break;
 
                                 else if(!k1.matches("[a-zA-Z\\s]*"))
                                     JOptionPane.showMessageDialog(null,"The name of an item cannot have any numbers or special characters.","Error!",JOptionPane.INFORMATION_MESSAGE,null);
@@ -814,7 +828,7 @@ public class SupermarketInventory {
                             while(item.contains(k1) || !k1.matches("[a-zA-Z\\s]*"));
 
 
-                            if(k1==null) {
+                            if(k1 == null) {
                                 cancel = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel this action?", "Cancel", JOptionPane.YES_NO_OPTION);
                                 if (cancel == 0) break;
                             }
@@ -832,6 +846,8 @@ public class SupermarketInventory {
                         JOptionPane.showMessageDialog(null,"Item Name (" + modifyName[bruh] + ") changed to (" + k1 + ") successfully!" ,"Item Name Replaced",JOptionPane.INFORMATION_MESSAGE);
                     }
 
+                    
+                    
                     //Modify item ID
                     else if(ok == 1){
 
@@ -845,7 +861,7 @@ public class SupermarketInventory {
                             do
                             {
                                 k1 = JOptionPane.showInputDialog(null, "What is the new ID of your item?", "ID Change", JOptionPane.INFORMATION_MESSAGE);
-                                
+
                                 if (id.contains(k1))
                                     JOptionPane.showMessageDialog(null,"Two items can't have the same ID.","Error!",JOptionPane.INFORMATION_MESSAGE,null);
 
@@ -879,6 +895,8 @@ public class SupermarketInventory {
                         JOptionPane.showMessageDialog(null,"ID of "  + modifyName[bruh] + ": " + modifyID[bruh] + " changed to " + k1 + " successfully!" ,"ID Replaced",JOptionPane.INFORMATION_MESSAGE);
                     }
 
+                    
+                    
                     //Modify item quantity
                     else if(ok == 2){
 
@@ -895,7 +913,7 @@ public class SupermarketInventory {
                                 try
                                 {
                                     k1 = JOptionPane.showInputDialog(null, "What is the new quantity of your item?", "ID Change", JOptionPane.INFORMATION_MESSAGE);
-                                    
+
                                     if(k1 == null) break;
 
                                     f = Integer.parseInt(k1);
@@ -920,7 +938,7 @@ public class SupermarketInventory {
                         }
                         while(k1 == null);
 
-                        if(cancel==0) continue;
+                        if(cancel == 0) continue;
 
 
                         quantity.set(bruh,f);

@@ -133,16 +133,9 @@ public class SupermarketInventory {
             writer.println();
             Object[][] array = new Object[3][2];
 
-            array[0] = new Object[i.length + 1];
+            array[0] = new Object[i.length];
             array[0][0] = "Item Name:";
-
-            for (int j = 1; j < array[0].length; j++)
-            {
-                array[0][j] = i[j - 1];
-                if (j == i.length - 1) break;
-            }
-
-            for (int j = 0; j < array[0].length - 1; j++) writer.print(array[0][j] + " ");
+            System.arraycopy(i, 0, array[0], 1, array[0].length - 1);
 
             array[1] = new Object[l.length + 1];
             array[1][0] = "Item ID:";
@@ -196,17 +189,9 @@ public class SupermarketInventory {
                 writer.println();
                 Object[][] array = new Object[3][2];
 
-                array[0] = new Object[i.length + 1];
+                array[0] = new Object[i.length];
                 array[0][0] = "Item Name:";
-
-
-                for (int j = 1; j < array[0].length; j++)
-                {
-                    array[0][j] = i[j - 1];
-                    if (j == i.length - 1) break;
-                }
-
-                for (int j = 0; j < array[0].length - 1; j++) writer.print(array[0][j] + " ");
+                System.arraycopy(i, 0, array[0], 1, array[0].length - 1);
 
                 array[1] = new Object[l.length + 1];
                 array[1][0] = "Item ID:";

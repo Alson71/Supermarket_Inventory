@@ -10,7 +10,7 @@ import org.apache.commons.io.input.*;
 public class SupermarketInventory {
 
     //Class declarations
-    File file = new File("src/supermarket.txt");
+    File file = new File("Supermarket_Inventory-master/src/supermarket.txt");
     static SupermarketInventory inventory = new SupermarketInventory();
     static int items, YesNo, lockedOut, makeupMind;
     static ArrayList<Object> item, id;

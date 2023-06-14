@@ -351,6 +351,7 @@ public class SupermarketInventory {
         else {
 
             String username = login.usernameTextField.getText().replaceAll("\\s+",""); //No spaces allowed in a username
+            username = username.toLowerCase(); //Username must be in all lowercase
             JLabel label = new JLabel("        Welcome " + username + "!");
             JOptionPane.showMessageDialog(login,label,"Successful Login",JOptionPane.INFORMATION_MESSAGE);
             loggedIn = true;

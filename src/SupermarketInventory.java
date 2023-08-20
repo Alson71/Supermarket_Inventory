@@ -10,7 +10,7 @@ import org.apache.commons.io.input.*;
 public class SupermarketInventory {
 
     //Class declarations
-    File file = new File("Supermarket_Inventory-master/src/supermarket.txt");
+    static File file;
     static SupermarketInventory inventory = new SupermarketInventory();
     static int items, YesNo, lockedOut, makeupMind;
     static ArrayList<Object> item, id;
@@ -31,6 +31,7 @@ public class SupermarketInventory {
 
     public static void main(String [] args)
     {
+        createSaveFile();
         SupermarketInventory inventory = new SupermarketInventory();
         inventory.createPictures();
         login = new Login();
@@ -42,6 +43,22 @@ public class SupermarketInventory {
         login(login);
         if(loggedIn) supermarketInventory();
 
+    }
+
+    //Creates the file on the user's Desktop, but checks if their Desktop is on OneDrive or not
+    static public void createSaveFile(){
+        boolean b = true;
+        try{
+            file = new File(System.getProperty("user.home") + File.separator + "/Desktop/supermarket.txt");
+            PrintWriter writer = new PrintWriter(file);
+            writer.print("");
+            writer.close();
+        }
+        catch(IOException e){
+           b = false;
+        }
+
+        if(!b) file = new File(System.getProperty("user.home") + File.separator + "/OneDrive/Desktop/supermarket.txt");
     }
 
     
@@ -248,6 +265,7 @@ public class SupermarketInventory {
         Image img2 = icon2.getImage();
         Image img3 = icon3.getImage();
         Image img4 = icon4.getImage();
+
 
         Image newImg = img.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
         Image newImg1 = img1.getScaledInstance(300, 200, java.awt.Image.SCALE_SMOOTH);

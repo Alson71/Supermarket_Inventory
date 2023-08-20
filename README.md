@@ -4,7 +4,7 @@ This project is meant to emulate a super market inventory, which includes allowi
 # Download Link:
 https://drive.google.com/file/d/19l-wVE825_h2nhu5yIUJ1C9XHi0iKilI/view?usp=sharing
 
-Sources for the pictures used: 
+# Sources
 
 ["Supermarket Grocery Store" by artisticco at Adobe Stock Photos](https://stock.adobe.com/search?k=cartoon+supermarket&asset_id=127541046)
 

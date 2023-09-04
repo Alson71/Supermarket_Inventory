@@ -50,9 +50,8 @@ public class SupermarketInventory {
         boolean b = true;
         try{
             file = new File(System.getProperty("user.home") + File.separator + "/Desktop/supermarket.txt");
-            PrintWriter writer = new PrintWriter(file);
-            writer.print("");
-            writer.close();
+            FileReader fileReader = new FileReader(file);
+            fileReader.close();
         }
         catch(IOException e){
            b = false;

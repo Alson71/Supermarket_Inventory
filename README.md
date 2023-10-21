@@ -3,8 +3,7 @@ This project is meant to emulate a super market inventory, which includes allowi
 
 # Download:
 Update 1.1:
-- With newer look and feel from FlatLaf
-Link:
+
 https://www.dropbox.com/scl/fi/j2xq0r4f8lg4xox6ulrqf/SupermarketInventory-1.1.exe?rlkey=xy0xvk3j3c0wr3hjby9tf0nw0&dl=0
 
 # Sources

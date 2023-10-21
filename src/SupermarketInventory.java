@@ -4,6 +4,7 @@ import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.io.*;
+import com.formdev.flatlaf.fonts.inter.FlatInterFont;
 import org.apache.commons.io.input.*;
 
 
@@ -45,13 +46,14 @@ public class SupermarketInventory {
 
     }
 
-    //Creates the file on the user's Desktop, but checks if their Desktop is on OneDrive or not
+    //Creates the file on the user's desktop, but checks if their Desktop is on OneDrive or not
     static public void createSaveFile(){
         boolean b = true;
         try{
             file = new File(System.getProperty("user.home") + File.separator + "/Desktop/supermarket.txt");
-            FileReader fileReader = new FileReader(file);
-            fileReader.close();
+            PrintWriter writer = new PrintWriter(file);
+            writer.print("");
+            writer.close();
         }
         catch(IOException e){
            b = false;
@@ -384,7 +386,7 @@ public class SupermarketInventory {
     public static void supermarketInventory() throws IOException{
 
         //Changing the style of the JOptionPane font
-        UIManager.put("OptionPane.messageFont", new Font("Arial", Font.BOLD,17));
+        UIManager.put("OptionPane.messageFont", new Font(FlatInterFont.FAMILY_LIGHT, Font.BOLD,17));
 
         //Prerequisite to starting the program
         login.dispose();

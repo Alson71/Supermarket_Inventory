@@ -23,10 +23,9 @@ public class Login extends JFrame implements KeyListener, ActionListener {
 
         //Designing the GUI for the login screen
         try {
-
-            UIManager.setLookAndFeel(new FlatDarkLaf());
             UIManager.put("Button.arc", 999);
             UIManager.put("TextComponent.arc", 999);
+            UIManager.setLookAndFeel(new FlatDarkLaf());
 
 
         } catch (Exception e) {
@@ -44,6 +43,7 @@ public class Login extends JFrame implements KeyListener, ActionListener {
         usernameLabel = new JLabel("Username:");
         usernameLabel.setBounds(190, 150, 140, 30);
         usernameLabel.setFont(new Font(FlatInterFont.FAMILY_LIGHT, Font.BOLD, 22));
+        usernameLabel.setForeground(new Color(0x060810));
 
         usernameTextField = new JTextField(16);
         usernameTextField.setBounds(310, 155, 140, 22);
@@ -51,6 +51,7 @@ public class Login extends JFrame implements KeyListener, ActionListener {
         passwordLabel = new JLabel("Password:");
         passwordLabel.setBounds(190, 190, 140, 30);
         passwordLabel.setFont(new Font(FlatInterFont.FAMILY_LIGHT, Font.BOLD, 22));
+        passwordLabel.setForeground(new Color(0x060810));
 
         passwordTextField = new JTextField(16);
         passwordTextField.setBounds(310, 195, 140, 22);
@@ -59,6 +60,7 @@ public class Login extends JFrame implements KeyListener, ActionListener {
         loginLabel = new JLabel("Inventory Login");
         loginLabel.setBounds(235, 40, 300, 40);
         loginLabel.setFont(new Font(FlatInterFont.FAMILY_LIGHT, Font.BOLD, 30));
+        loginLabel.setForeground(new Color(0x060810));
 
         assert url != null;
         shoppingCart = new ImageIcon(url);
@@ -97,7 +99,7 @@ public class Login extends JFrame implements KeyListener, ActionListener {
         if (e.getSource() == loginButton) {
 
             //Makes sure that the user fills out a username and password into the text fields
-            if (!usernameTextField.getText().equals("") && !passwordTextField.getText().equals("")) {
+            if (!usernameTextField.getText().isEmpty() && !passwordTextField.getText().isEmpty()) {
 
                 try {
                     SupermarketInventory.startProgram(); //Starts the program
@@ -121,7 +123,7 @@ public class Login extends JFrame implements KeyListener, ActionListener {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
             //Makes sure that the user fills out a username and password into the text fields
-            if (!usernameTextField.getText().equals("") && !passwordTextField.getText().equals("")) {
+            if (!usernameTextField.getText().isEmpty() && !passwordTextField.getText().isEmpty()) {
 
                 try {
                     SupermarketInventory.startProgram(); //Starts the program

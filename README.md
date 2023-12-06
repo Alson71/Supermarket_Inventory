@@ -4,7 +4,7 @@ This project is meant to emulate a super market inventory, which includes allowi
 # Download:
 Update 1.1:
 
-https://www.dropbox.com/scl/fi/8pw8i9uqqytmah0yvxll0/SupermarketInventory-1.1.exe?rlkey=fkbdjq5yfwnvqm4gka367hs1w&dl=0
+https://www.dropbox.com/scl/fi/p43nad2blnkryo3b6m28x/SupermarketInventory-1.1.exe?rlkey=66fibuv7jf3f49gnk5pdquqan&dl=0
 
 # Sources
 

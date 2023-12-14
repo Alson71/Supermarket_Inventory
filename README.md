@@ -1,7 +1,9 @@
 # Purpose
 This project is meant to emulate a super market inventory, which includes allowing the user to save their current list of items, view their list of items, and use different actions to modify their items. The password to log in is "password", but that can be changed in the source code. The username can be whatever the user pleases. Enjoy!
 # Screenshots
+Login Screen
 ![Login Screen](https://media.licdn.com/dms/image/D4E2DAQFkTJJ4v-CEvQ/profile-treasury-image-shrink_800_800/0/1701888669955?e=1703178000&v=beta&t=no0n5XonfnZvgYFFS4-8l7JHvHpo1ULnrw7V9EDXEHE)
+Inventory Options Screen
 ![Options Screen](https://media.licdn.com/dms/image/D4E2DAQExmf13oebMhw/profile-treasury-image-shrink_800_800/0/1697911967764?e=1703178000&v=beta&t=zN8LWrAgx8IH76H4eb-sNOdkgQ45OcX5BUKmiUSisZ8)
 # Download:
 Update 1.1:

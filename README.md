@@ -3,11 +3,11 @@ This project is meant to emulate a super market inventory, which includes allowi
 # Screenshots
 Login Screen
 
-![Login Screen](https://media.licdn.com/dms/image/D4E2DAQFkTJJ4v-CEvQ/profile-treasury-image-shrink_800_800/0/1701888669955?e=1703178000&v=beta&t=no0n5XonfnZvgYFFS4-8l7JHvHpo1ULnrw7V9EDXEHE)
+![Login Screen](https://i.ibb.co/PGh9kMf/Screenshot-2023-12-06-134911.png)
 
 Inventory Options Screen
 
-![Options Screen](https://media.licdn.com/dms/image/D4E2DAQExmf13oebMhw/profile-treasury-image-shrink_800_800/0/1697911967764?e=1703178000&v=beta&t=zN8LWrAgx8IH76H4eb-sNOdkgQ45OcX5BUKmiUSisZ8)
+![Options Screen](https://i.ibb.co/0D7GCqb/Screenshot-2023-10-21-141221.png)
 
 Actions Menu
 ![Actions Menu](https://i.ibb.co/RYR9nX7/Screenshot-2023-12-14-122103.png)

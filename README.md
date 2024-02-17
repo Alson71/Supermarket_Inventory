@@ -4,6 +4,7 @@ A supermarket inventory simulator
  * List of items saved to file
  * Add, remove, or modify items
  * Modern login screen
+
 Note: The password is **password**
 
 # Screenshots

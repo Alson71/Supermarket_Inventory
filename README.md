@@ -10,7 +10,7 @@ Inventory Options Screen
 ![Options Screen](https://i.ibb.co/0D7GCqb/Screenshot-2023-10-21-141221.png)
 
 Actions Menu
-![Actions Menu](https://i.ibb.co/RYR9nX7/Screenshot-2023-12-14-122103.png)
+![Actions Menu](https://i.ibb.co/D8hFXj0/Screenshot-2024-02-17-104627.png)
 # Download:
 Update 1.1:
 

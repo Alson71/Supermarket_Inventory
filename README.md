@@ -5,7 +5,7 @@ A supermarket inventory simulator
  * Add, remove, or modify items
  * Modern login screen
 
-Note: The password is **password**
+Note: The login password is **password**
 
 # Screenshots
 Login Screen

@@ -13,15 +13,14 @@ Login Screen
 ![Login Screen](https://i.ibb.co/PGh9kMf/Screenshot-2023-12-06-134911.png)
 
 
-
-
+Inventory Options Screen
+![Options Screen](https://i.ibb.co/0D7GCqb/Screenshot-2023-10-21-141221.png)
 
 
 Actions Menu
 ![Actions Menu](https://i.ibb.co/D8hFXj0/Screenshot-2024-02-17-104627.png)
 
-Inventory Options Screen
-![Options Screen](https://i.ibb.co/0D7GCqb/Screenshot-2023-10-21-141221.png)
+
 # Download:
 Update 1.1:
 

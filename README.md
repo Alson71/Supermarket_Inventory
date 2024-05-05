@@ -14,6 +14,7 @@ Login Screen
 
 Inventory Options Screen
 
+
 ![Options Screen](https://i.ibb.co/0D7GCqb/Screenshot-2023-10-21-141221.png)
 
 Actions Menu

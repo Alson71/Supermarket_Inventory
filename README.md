@@ -10,15 +10,15 @@ Note: The login password is **password**
 # Screenshots
 Login Screen
 
-![Login Screen](https://i.ibb.co/PGh9kMf/Screenshot-2023-12-06-134911.png)
+![Image](https://github.com/user-attachments/assets/e581315f-0253-4700-be76-b831d0ebb10d)
 
 
 Inventory Options Screen
-![Options Screen](https://i.ibb.co/1X5rKLY/Inventory-Screen.png)
+![Image](https://github.com/user-attachments/assets/a7534134-b4c4-4476-b11e-a87c14280e07)
 
 
 Actions Menu
-![Actions Menu](https://i.ibb.co/D8hFXj0/Screenshot-2024-02-17-104627.png)
+![Image](https://github.com/user-attachments/assets/2b76f88e-8a21-4863-9cdf-272dd2a10eee)
 
 
 # Download:
